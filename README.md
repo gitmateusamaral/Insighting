@@ -1,4 +1,6 @@
 # Design Insight Project
+![Logo](https://img.shields.io/badge/Insight-ing-blue.svg)
+![](https://img.shields.io/badge/Stage-Developing-red.svg)
 
 ###English:
 __________
@@ -25,5 +27,7 @@ __________
 <p align="center">
   <img src="http://i.imgur.com/Kuk2TwF.png">
 </p>
+
+
 
 
