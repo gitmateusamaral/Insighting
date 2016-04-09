@@ -1,4 +1,3 @@
 <resources>
-    <string name="app_name">Insight</string>
-    <string name="Image">Nice image to add new projects</string>
+    <string name="app_name">Project_Insight</string>
 </resources>

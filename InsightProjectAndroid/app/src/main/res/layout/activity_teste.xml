@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:carbon_insetColor="?attr/colorPrimary"
+    android:paddingLeft="5dp"
+    android:paddingTop="5dp"
+    android:paddingRight="5dp"
+    android:paddingBottom="5dp">
+    <carbon.widget.FloatingActionButton
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:padding="@dimen/carbon_padding"
+        android:layout_marginLeft="@dimen/carbon_padding"
+        android:layout_marginRight="@dimen/carbon_padding"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="31dp"
+        app:carbon_elevation="@dimen/carbon_elevationLow"
+        android:src="@drawable/ic_add_3x"
+        android:tint="@color/carbon_white" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Start a Project"
+        android:textSize="72sp"
+        android:textAlignment="center"
+        android:textColor="@color/carbon_grey_800"
+        android:id="@+id/textView"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="46dp" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="It's easy. Just press the button bellow!"
+        android:textSize="24sp"
+        android:textAlignment="center"
+        android:textColor="@color/carbon_grey_500"
+        android:id="@+id/textView2"
+        android:layout_below="@+id/textView"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="46dp"
+        android:allowUndo="true"
+        android:alpha="1" />
+
+</RelativeLayout>
