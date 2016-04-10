@@ -13,34 +13,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Medium Text"
+        android:text=" O Modelo de Espaço Vetorial (VSM – Vectorial Space Model) se presta a resolver
+problemas de representação de documentos utilizando representação geométrica. Esse
+modelo é utilizado, também, em casos em que é preciso encontrar documentos que
+atendam a um critério, e a solução desse problema decorre naturalmente do esquema de
+representação dos documentos."
         android:id="@+id/label"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentTop="true" />
 
-    <EditText
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:inputType="textMultiLine"
-        android:ems="10"
-        android:id="@+id/originalT"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_toLeftOf="@+id/label"
-        android:layout_toStartOf="@+id/label"
-        android:editable="true" />
-
-    <EditText
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:inputType="textMultiLine"
-        android:ems="10"
-        android:id="@+id/newT"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_toEndOf="@+id/label"
-        android:layout_toRightOf="@+id/label"
-        android:editable="true" />
 </RelativeLayout>

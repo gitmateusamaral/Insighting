@@ -4,17 +4,6 @@ package com.example.victorfaria.justtestingstuff;
  * Created by Victor Faria on 09/04/2016.
  */
 public class Merge {
-
-
-
-
-
-
-
-
-
-
-
     public static String text(String originalText,String newText){
         String mergeText = "";
         int maxNumCaracters = (originalText.length()>newText.length())?originalText.length():newText.length();
