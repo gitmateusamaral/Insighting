@@ -6,8 +6,14 @@ import android.util.Log;
 import java.util.ArrayList;
 import java.lang.String;
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
 
 //DO NOT USE THESE CARACTERS ;|#
 public class Project {
@@ -82,20 +88,53 @@ public class Project {
         return map;
     }
 
-    public String cleanText(String original){
+    public ArrayList<String> keyWordFinder(String original,int num){
+        original = original.toLowerCase();
         String[] stopwords = MainActivity.r.getString(R.string.portuguese_stopwords).toString().split(" ");
         for(String sw : stopwords){
             original = original.replaceAll(" "+sw+" ", " ");
         }
-        HashMap<String,Integer> occurrences = countIntem(original.split(" "));
         Stemmer st = new Stemmer();
-        for (HashMap.Entry<String, Integer> entry : occurrences.entrySet()) {
-            st.add(entry.getKey().toCharArray(),entry.getKey().length());
-            st.stem();
-            Log.d("MainActivity", "lulu : " + st.toString());
-
+        String[] tokens = original.split(" ");
+        String[] candidates = original.replace(".","").replace("(","").replace(")","").split(" ");
+        for(int i = 0; i < tokens.length;i++){
+            tokens[i] = tokens[i].replace(".","").replace("(","").replace(")","");
+            tokens[i] = st.wordStemming(tokens[i]);
+            Log.d("MainActivity",tokens[i]);
         }
-        return original;
+        HashMap<String,Integer> occurrences = countIntem(tokens);
+        occurrences.remove("");
+        int i = 1;
+        Log.d("MainActivity",occurrences.toString());
+        while(occurrences.containsValue(i)){
+            i++;
+            if(!occurrences.containsValue(i)){
+                int count = 1;
+                ArrayList<String> res = new ArrayList<String>();
+                for(int j = 0; j < num;j++){
+                    for(Entry<String,Integer> k:occurrences.entrySet()){
+                        if(k.getValue() == i-count){
+                            res.add( radic(candidates, k.getKey(),0));
+                        }else if(res.size() == num)
+                            return  res;
+                    }
+                    count++;
+                }
+                return  res;
+            }
+        }
+        return new ArrayList<String>();
     }
+
+    public String radic(String[] k, String p,int ll){
+        for(String l:k){
+            if(p.regionMatches(0,l,0,p.length()-ll)){
+                return l;
+            }
+        }
+        return radic(k,p,ll+1);
+    }
+
+
 
 }

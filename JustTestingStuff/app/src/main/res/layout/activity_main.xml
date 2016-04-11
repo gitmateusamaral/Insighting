@@ -13,13 +13,19 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text=" O Modelo de Espaço Vetorial (VSM – Vectorial Space Model) se presta a resolver
-problemas de representação de documentos utilizando representação geométrica. Esse
-modelo é utilizado, também, em casos em que é preciso encontrar documentos que
-atendam a um critério, e a solução desse problema decorre naturalmente do esquema de
-representação dos documentos."
-        android:id="@+id/label"
+        android:text="Medium Text"
+        android:id="@+id/textView2"
+        android:onClick="analizeText"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/editText"
+        android:text="O presente trabalho tem como objetivo compartilhar a experiência vivenciada pelos alunos do segundo ano do ensino médio de um colégio público estadual, do curso de Programação de Jogos Digitais, que teve como foco a integração das disciplinas de Matemática e Programação com o intuito de oportunizar, de modo colaborativo, o aprendizado do conteúdo de matrizes e determinantes. Neste relato de experiência buscamos mostrar a importância do trabalho interdisciplinar e de novas plataformas de desenvolvimento que ampliam o conhecimento do conteúdo estudado."
+        android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_alignParentTop="true" />
+        android:elegantTextHeight="false" />
 
 </RelativeLayout>

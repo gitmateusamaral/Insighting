@@ -2,7 +2,7 @@ package com.example.victorfaria.justtestingstuff;
 import java.util.Arrays;
 import java.util.HashSet;
 
-public class PortuguesePorterStemmer{
+public class Stemmer{
 
 	public String wordStemming(String word)
 	{
@@ -226,7 +226,7 @@ public class PortuguesePorterStemmer{
 
 	private final HashSet<Character> vowels = new HashSet<Character>(Arrays.asList('a', 'e', 'i', 'o', 'u', 'á', 'é', 'í', 'ó', 'ú', 'â', 'ê', 'ô'));
 
-	private final String suffix1[] = {"amentos", "imentos", "amento", "imento", "adoras", "adores", "aço~es", "ismos", "istas", "adora", "aça~o", "antes", "ância", "ezas", "icos", "icas", "ismo", "ável", "ível", "ista", "osos", "osas", "ador", "ante", "eza", "ico", "ica", "oso", "osa"};
+	private final String suffix1[] = {"amentos", "imentos", "amento", "imento", "adoras", "adores", "ações", "ismos", "istas", "adora", "ação", "antes", "ância", "ezas", "icos", "icas", "ismo", "ável", "ível", "ista", "osos", "osas", "ador", "ante", "eza", "ico", "ica", "oso", "osa"};
 	private final String suffix2[] ={"logías", "logía"};
 	private final String suffix3[] ={"uciones", "ución"};
 	private final String suffix4[] ={"ências", "ência"};
