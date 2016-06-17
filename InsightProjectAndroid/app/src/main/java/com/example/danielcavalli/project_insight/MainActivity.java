@@ -41,12 +41,12 @@ public class MainActivity extends AppCompatActivity {
 
         if(num < gridLayout.getRowCount() *gridLayout.getColumnCount()  &&  edit.getText().toString() != "") {
             Log.d("MainActivity", gridLayout.getColumnCount() + " || " + gridLayout.getRowCount());
-            Button b = new Button(this);
-            b.setText(edit.getText().toString());
-            b.setMinWidth(gridLayout.getWidth() / gridLayout.getRowCount());
-            b.setMinHeight(gridLayout.getHeight() / gridLayout.getColumnCount());
-            b.setBackgroundColor(Color.WHITE);
-            b.setTextColor(Color.parseColor("#529e90"));
+            CardView b = new CardView(this);
+            //b.text(edit.getText().toString());
+            b.setMinimumWidth(gridLayout.getWidth() / gridLayout.getRowCount());
+            b.setMinimumWidth(gridLayout.getHeight() / gridLayout.getColumnCount());
+            b.setInsetColor(Color.WHITE);
+            b.setBackgroundColor(Color.parseColor("#529e90"));
             num++;
             Log.d("MainActivity", b.toString());
             gridLayout.addView(b);

@@ -27,4 +27,6 @@ dependencies {
     compile 'com.android.support:appcompat-v7:23.2.1'
     compile 'tk.zielony:carbon:0.12.0'
     compile 'com.android.support:gridlayout-v7:23.2.1'
+    compile 'com.android.support:cardview-v7:23.2.1'
+    compile 'com.android.support:recyclerview-v7:23.2.1'
 }

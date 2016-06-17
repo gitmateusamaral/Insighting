@@ -7,44 +7,32 @@
     android:columnCount="7">
 
 
-    <carbon.widget.FloatingActionButton
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:padding="@dimen/carbon_padding"
-        android:layout_marginLeft="@dimen/carbon_padding"
-        android:layout_marginRight="@dimen/carbon_padding"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="31dp"
-        app:carbon_elevation="@dimen/carbon_elevationLow"
-        android:src="@drawable/ic_add_3x"
-        android:tint="@color/design_fab_shadow_mid_color"
-        android:clickable="true"
-        android:onClick="showDialog"
-        android:id="@+id/view"
-        android:layout_gravity="center_horizontal|bottom"
-        android:visibility="visible" />
-
     <GridLayout
         android:layout_width="match_parent"
         android:layout_height="350dp"
-        android:layout_alignParentStart="true"
-        android:columnCount="3"
-        android:rowCount="2"
+        android:columnCount="5"
+        android:rowCount="4"
         android:id="@+id/grid"
-        android:background="#000000">
+        android:background="#202020"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/relativeLayout"
+        android:visibility="visible"
+        android:useDefaultMargins="false">
 
     </GridLayout>
 
     <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="300dp"
+        android:layout_height="100dp"
         android:id="@+id/namingView"
-        android:visibility="visible">
+        android:visibility="gone"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true">
 
         <ImageView
-            android:layout_width="300dp"
-            android:layout_height="100dp"
+            android:layout_width="250dp"
+            android:layout_height="75dp"
             android:id="@+id/imageView"
             android:foreground="#000000"
             android:layout_alignTop="@+id/project_name"
@@ -56,15 +44,14 @@
             android:inputType="textPersonName"
             android:ems="10"
             android:id="@+id/project_name"
-            android:layout_marginTop="149dp"
             android:hint="Type Project Name..."
             android:maxLength="20"
             android:drawableTint="#529e90"
             android:textColor="#529e90"
             android:textColorHint="#529e90"
             android:textColorHighlight="#529e90"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true" />
+            android:layout_centerHorizontal="true"
+            android:background="#00ffffff" />
 
         <Button
             android:layout_width="wrap_content"
@@ -87,6 +74,36 @@
             android:onClick="hideDialog"
             android:textColor="#529e90"
             android:background="#000000" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="75dp"
+        android:background="#000000"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:id="@+id/relativeLayout">
+
+        <ImageView
+            android:layout_width="130dp"
+            android:layout_height="130dp"
+            android:id="@+id/logo"
+            android:src="@drawable/logo_3"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true" />
+
+        <Button
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:id="@+id/view"
+            android:src="@drawable/icone_mais"
+            android:shadowColor="#00ffffff"
+            android:background="@drawable/icone_mais"
+            android:layout_centerVertical="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="35dp"
+            android:onClick="showDialog" />
 
     </RelativeLayout>
 

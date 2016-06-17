@@ -47,7 +47,7 @@
         android:layout_gravity="center_horizontal"
         android:visibility="gone" />
 
-    <carbon.widget.FloatingActionButton
+    <Button
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:padding="@dimen/carbon_padding"
@@ -57,7 +57,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="31dp"
         app:carbon_elevation="@dimen/carbon_elevationLow"
-        android:src="@drawable/ic_add_3x"
+        android:background="@drawable/icone_mais"
         android:tint="@color/carbon_white"
         android:clickable="true"
         android:onClick="changeScreen "
