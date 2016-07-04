@@ -23,11 +23,12 @@ ___________
 <p align="center">
   <img src="http://i.imgur.com/D4wJu57.png">
   <img src="http://i.imgur.com/zfYLsyl.png">
+  </br>
   <img src="http://i.imgur.com/Kuk2TwF.png">
 </p>
 
-</br></br>
-[![GitHub Logo](http://imgur.com/SjfhGxU.png)](https://www.facebook.com/insightingapp/)
+<!--</br></br>
+[![GitHub Logo](http://imgur.com/SjfhGxU.png)](https://www.facebook.com/insightingapp/)-->
 
 
 
