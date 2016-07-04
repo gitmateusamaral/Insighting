@@ -19,10 +19,12 @@ Uma ferramenta feita em Android Studio para auxiliar a criação e organização
 ####Equipe:
 **[Mateus Amaral](https://github.com/gitmateusamaral), [Matheus Souza](https://github.com/mathino), [Victor Fernandes](https://github.com/victorffernandes), [Luís Paulo](https://github.com/lpaulobos) e [Daniel Cavalli](https://github.com/danielcavalli).**
 ___________
-</br>
-![Stage](http://i.imgur.com/D4wJu57.png)
-![Stage](http://i.imgur.com/zfYLsyl.png)
-![Stage](http://i.imgur.com/Kuk2TwF.png)
+
+<p align="center">
+  <img src="http://i.imgur.com/D4wJu57.png">
+  <img src="http://i.imgur.com/zfYLsyl.png">
+  <img src="http://i.imgur.com/Kuk2TwF.png">
+</p>
 
 </br></br>
 [![GitHub Logo](http://imgur.com/SjfhGxU.png)](https://www.facebook.com/insightingapp/)
