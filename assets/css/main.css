@@ -1896,9 +1896,9 @@
 				
 				.feature-list h4{
 				margin: 0 0 0.75em 0;
-				font-size: 1.15em;
-				letter-spacing: 0.05em;
-				margin-top: -0.35em;
+				font-size: 1.1em;
+				letter-spacing: 0.01em;
+				margin-top: -0.45em;
 			}
 
 				.feature-list h4:before {
@@ -2413,6 +2413,8 @@
 					line-height: 32px;
 					font-size: 16px;
 				}
+
+
 
 			.feature-list p {
 				margin: 0 0 0 48px;
