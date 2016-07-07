@@ -1,5 +1,7 @@
 <p align="center">
-  <img src="http://i.imgur.com/7E73CgZ.png">
+  <a href="http://www.insighting.xyz/" target="_blank">
+    <img src="http://i.imgur.com/7E73CgZ.png"/>
+  </a>
 </p>
 
 ![Logo](https://img.shields.io/badge/Ins-ighting-blue.svg)
