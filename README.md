@@ -6,6 +6,12 @@
 
 ![Logo](https://img.shields.io/badge/Ins-ighting-blue.svg)
 ![Stage](https://img.shields.io/badge/Stage-Developing-red.svg)
+<a href="http://www.insighting.xyz/">
+  <img src="https://img.shields.io/badge/Insighting-Website-green.svg"/>
+</a>
+<a href="https://www.facebook.com/insightingapp/">
+  <img src="https://img.shields.io/badge/Insighting-Facebook-blue.svg"/>
+</a>
 
 ###English:
 ___________
@@ -34,8 +40,6 @@ ___________
   <img src="http://i.imgur.com/Kuk2TwF.png">
 </p>
 
-<!--</br></br>
-[![GitHub Logo](http://imgur.com/SjfhGxU.png)](https://www.facebook.com/insightingapp/)-->
 
 
 
