@@ -25,7 +25,8 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:background="#000000"
-        android:textColor="#006600"/>
+        android:textColor="#006600"
+        android:onClick="setProjectName"/>
 
     <Button
         style="?android:attr/buttonStyleSmall"
@@ -37,5 +38,6 @@
         android:layout_centerVertical="true"
         android:layout_toRightOf="@id/ok"
         android:background="#000000"
-        android:textColor="#006600"/>
+        android:textColor="#006600"
+        android:onClick="Cancel"/>
 </RelativeLayout>
