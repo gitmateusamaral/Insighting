@@ -1909,7 +1909,7 @@
 					font-size: 32px;
 					top: 0.2em;
 				}
-
+				
 			.feature-list p {
 				margin: 0 0 0 5em;
 			}
@@ -2202,7 +2202,7 @@
 		/* Copyright */
 
 			#copyright {
-				margin: 6em 0 0 0;
+				margin: 3em 0 0 0;
 			}
 
 				#copyright ul {
@@ -2629,7 +2629,7 @@
 			}
 
 			#footer-wrapper {
-				padding-top: 3em;
+				padding-top: 1em;
 			}
 
 				#footer-wrapper .feature-list section {
