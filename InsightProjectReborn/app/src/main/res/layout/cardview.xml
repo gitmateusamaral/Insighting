@@ -9,12 +9,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="16dp"
-            android:background="#141414">
+            android:background="#404040">
 
             <ImageView
                 android:layout_width="fill_parent"
                 android:layout_height="100dp"
-                android:id="@+id/person_photo"
+                android:id="@+id/card_photo"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentTop="true"
                 android:background="@color/colorPrimary"
@@ -26,7 +26,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/person_name"
+                android:id="@+id/card_name"
                 android:textSize="16dp"
                 android:text="Insighting"
                 android:textStyle="bold"
@@ -39,10 +39,10 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/person_age"
+                android:id="@+id/card_description"
                 android:text="v0.01"
                 android:textColor="#d4d4d4"
-                android:layout_below="@+id/person_name"
+                android:layout_below="@id/card_name"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true" />
 

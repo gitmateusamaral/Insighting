@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -18,7 +20,9 @@ public class MainActivity extends AppCompatActivity {
     public void addCardView(View v){
         LayoutInflater inflater = (LayoutInflater) this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         ViewGroup gridlayout = (ViewGroup) findViewById(R.id.grid);
-        inflater.inflate(R.layout.cardview, gridlayout);
+        View cardView = inflater.inflate(R.layout.cardview, gridlayout);
+        ((TextView)cardView.findViewById(R.id.card_name)).setText("Name Here");
+        ((TextView)cardView.findViewById(R.id.card_description)).setText("description");
+        //((ImageView)cardView.findViewById(R.id.card_photo));
     }
-
 }

@@ -26,7 +26,7 @@
                 android:id="@+id/person_photo"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentTop="true"
-                android:src="@drawable/ElderFit"
+                android:src="@drawable/elderfit"
                 android:layout_marginLeft="1dp"
                 android:layout_marginRight="1dp" />
 
@@ -100,7 +100,7 @@
                 android:id="@+id/person_photo2"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentTop="true"
-                android:src="@drawable/ElderFit"
+                android:src="@drawable/elderfit"
                 android:layout_marginLeft="1dp"
                 android:layout_marginRight="1dp" />
 
