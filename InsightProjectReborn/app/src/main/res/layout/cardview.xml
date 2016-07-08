@@ -1,0 +1,50 @@
+<android.support.v7.widget.CardView android:layout_width="175dp"
+    android:layout_height="wrap_content"
+    android:id="@+id/cv"
+    android:background="@color/colorAccent"
+    android:padding="2dp"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp"
+            android:background="#141414">
+
+            <ImageView
+                android:layout_width="fill_parent"
+                android:layout_height="100dp"
+                android:id="@+id/person_photo"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:background="@color/colorPrimary"
+                android:layout_marginRight="-16dp"
+                android:layout_marginLeft="-16dp"
+                android:layout_marginTop="-16dp"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/person_name"
+                android:textSize="16dp"
+                android:text="Insighting"
+                android:textStyle="bold"
+                android:textColor="#fff"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginTop="100dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/person_age"
+                android:text="v0.01"
+                android:textColor="#d4d4d4"
+                android:layout_below="@+id/person_name"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
+
+        </RelativeLayout>
+</android.support.v7.widget.CardView>
