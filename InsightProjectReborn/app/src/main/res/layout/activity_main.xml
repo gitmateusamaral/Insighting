@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.example.facebook.insighting.MainActivity"
+    tools:context=".ProjectActivity"
     android:background="#141414">
 
     <ImageView
@@ -36,7 +36,7 @@
         android:layout_alignParentEnd="false"
         android:layout_marginTop="10dp"
         android:layout_marginRight="15dp"
-        android:onClick="addCardView"/>
+        android:onClick="showDialog"/>
 
     <Button
         android:layout_width="fill_parent"
@@ -70,5 +70,13 @@
 
         </GridLayout>
     </ScrollView>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/overlay"
+        android:layout_centerInParent="true"
+        android:foregroundGravity="center">
+    </RelativeLayout>
 
 </RelativeLayout>

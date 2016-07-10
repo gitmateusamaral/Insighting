@@ -10,9 +10,10 @@ public class Project {
     ArrayList<InsightCard> cards;
     ArrayList<String> categoriesList;
 
-    public Project(String name,String id){
+    public Project(String name,String id,String description){
         projectName = name;
         projectID = id;
+        projectDescription = description;
     }
 
     public Project (String p){
