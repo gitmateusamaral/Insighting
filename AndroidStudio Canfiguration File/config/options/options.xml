@@ -6,5 +6,6 @@
     <property name="AndroidInitConfigurator.V3" value="true" />
     <property name="AndroidInitConfigurator.V1" value="true" />
     <property name="AndroidInitConfigurator.V2" value="true" />
+    <property name="com.google.gct.enable.cloud.testing" value="true" />
   </component>
 </application>
