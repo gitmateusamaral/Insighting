@@ -1,6 +1,8 @@
 package com.example.facebook.insighting;
 
 import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
@@ -18,11 +20,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 public class ProjectActivity extends AppCompatActivity {
     public String newName = "Deafult";
     public String newDescription;
-    public ArrayList<Project> projects;
+    public static ArrayList<Project> projects;
 
 
     @Override
@@ -30,32 +33,33 @@ public class ProjectActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         projects = new ArrayList<Project>();
-    }
+        SharedPreferences sharedPref = this.getPreferences(Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPref.edit();
 
-    public void setProjectName(View v){
-        EditText dialog_text = (EditText)v.findViewById(R.id.dialog_text);
-       // newName = dialog_text.getText().toString();
-        dialog_text.setHint("Description");
-        Button ok_button = (Button) v.findViewById(R.id.ok);
-        ok_button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                EditText dt = (EditText)view.findViewById(R.id.dialog_text);
-                projects.add(new Project(newName,"01001",dt.getText().toString()));
-                addCardView(newName,dt.getText().toString());
-            }
-        });
+        Map<String,?> keys = sharedPref.getAll();
+
+        for(Map.Entry<String,?> entry : keys.entrySet()){
+            Project proj = new Project(entry.getValue().toString());
+            addCardView(proj.projectName, proj.projectDescription);
+        }
+
+
+        Bundle extras = getIntent().getExtras();
+        if(extras != null){
+            String name = extras.get("projectname").toString();
+            String des = extras.get("projectdescription").toString();
+            addCardView(name, des);
+            Project p = new Project(name,"id",des);
+            projects.add(p);
+            editor.putString(p.projectName, p.AsString());
+            editor.commit();
+        }
+
     }
 
     public void showDialog(View v){
-        if(findViewById(R.id.dialog_box) == null) {
-            LayoutInflater inflater = (LayoutInflater) this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            ViewGroup overlay = (ViewGroup) findViewById(R.id.overlay);
-            inflater.inflate(R.layout.dialogbox,overlay);
-        }else {
-           Toast t = Toast.makeText(this,"Insert your Project Name",Toast.LENGTH_SHORT);
-           t.show();
-        }
+        Intent i = new Intent(this,project_creation_activity.class);
+        startActivity(i);
     }
 
     public void addCardView(String name, String des){
