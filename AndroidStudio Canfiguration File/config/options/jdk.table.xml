@@ -1,0 +1,51 @@
+<application>
+  <component name="ProjectJdkTable">
+    <jdk version="2">
+      <name value="1.7" />
+      <type value="JavaSDK" />
+      <version value="java version &quot;1.7.0_79&quot;" />
+      <homePath value="C:/Program Files/Java/jdk1.7.0_79" />
+      <roots>
+        <annotationsPath>
+          <root type="composite">
+            <root type="simple" url="jar://$APPLICATION_HOME_DIR$/lib/jdkAnnotations.jar!/" />
+          </root>
+        </annotationsPath>
+        <classPath>
+          <root type="composite">
+            <root type="simple" url="jar://C:/Program Files/Java/jdk1.7.0_79/jre/lib/charsets.jar!/" />
+            <root type="simple" url="jar://C:/Program Files/Java/jdk1.7.0_79/jre/lib/deploy.jar!/" />
+            <root type="simple" url="jar://C:/Program Files/Java/jdk1.7.0_79/jre/lib/ext/access-bridge-64.jar!/" />
+            <root type="simple" url="jar://C:/Program Files/Java/jdk1.7.0_79/jre/lib/ext/dnsns.jar!/" />
+            <root type="simple" url="jar://C:/Program Files/Java/jdk1.7.0_79/jre/lib/ext/jaccess.jar!/" />
+            <root type="simple" url="jar://C:/Program Files/Java/jdk1.7.0_79/jre/lib/ext/localedata.jar!/" />
+            <root type="simple" url="jar://C:/Program Files/Java/jdk1.7.0_79/jre/lib/ext/sunec.jar!/" />
+            <root type="simple" url="jar://C:/Program Files/Java/jdk1.7.0_79/jre/lib/ext/sunjce_provider.jar!/" />
+            <root type="simple" url="jar://C:/Program Files/Java/jdk1.7.0_79/jre/lib/ext/sunmscapi.jar!/" />
+            <root type="simple" url="jar://C:/Program Files/Java/jdk1.7.0_79/jre/lib/ext/zipfs.jar!/" />
+            <root type="simple" url="jar://C:/Program Files/Java/jdk1.7.0_79/jre/lib/javaws.jar!/" />
+            <root type="simple" url="jar://C:/Program Files/Java/jdk1.7.0_79/jre/lib/jce.jar!/" />
+            <root type="simple" url="jar://C:/Program Files/Java/jdk1.7.0_79/jre/lib/jfr.jar!/" />
+            <root type="simple" url="jar://C:/Program Files/Java/jdk1.7.0_79/jre/lib/jfxrt.jar!/" />
+            <root type="simple" url="jar://C:/Program Files/Java/jdk1.7.0_79/jre/lib/jsse.jar!/" />
+            <root type="simple" url="jar://C:/Program Files/Java/jdk1.7.0_79/jre/lib/management-agent.jar!/" />
+            <root type="simple" url="jar://C:/Program Files/Java/jdk1.7.0_79/jre/lib/plugin.jar!/" />
+            <root type="simple" url="jar://C:/Program Files/Java/jdk1.7.0_79/jre/lib/resources.jar!/" />
+            <root type="simple" url="jar://C:/Program Files/Java/jdk1.7.0_79/jre/lib/rt.jar!/" />
+          </root>
+        </classPath>
+        <javadocPath>
+          <root type="composite">
+            <root type="simple" url="http://docs.oracle.com/javafx/2/api/" />
+          </root>
+        </javadocPath>
+        <sourcePath>
+          <root type="composite">
+            <root type="simple" url="jar://C:/Program Files/Java/jdk1.7.0_79/src.zip!/" />
+          </root>
+        </sourcePath>
+      </roots>
+      <additional />
+    </jdk>
+  </component>
+</application>
