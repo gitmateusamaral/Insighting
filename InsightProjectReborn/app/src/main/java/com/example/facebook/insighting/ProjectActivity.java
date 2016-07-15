@@ -37,7 +37,7 @@ public class ProjectActivity extends AppCompatActivity {
         SharedPreferences sharedPref = this.getSharedPreferences("Projects", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPref.edit();
         Map<String,?> keys = sharedPref.getAll();
-        //editor.clear();editor.commit();
+       // editor.clear();editor.commit();
 
         Bundle extras = getIntent().getExtras();
         if(extras != null){
@@ -49,6 +49,7 @@ public class ProjectActivity extends AppCompatActivity {
             editor.putString(p.projectName, p.AsString());
             editor.commit();
         }
+
 
         if(keys != null) {
             for (Map.Entry<String, ?> entry : keys.entrySet()) {
