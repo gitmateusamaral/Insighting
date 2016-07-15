@@ -44,7 +44,7 @@
         android:text="PROJECTS"
         android:id="@+id/button"
         android:background="#10a092"
-        android:layout_marginTop="61dp"
+        android:layout_marginTop="30dp"
         android:textColor="#fff"
         android:layout_below="@+id/imageView2"
         android:layout_alignParentLeft="true"

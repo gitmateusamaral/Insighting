@@ -26,6 +26,7 @@ public class ProjectActivity extends AppCompatActivity {
     public String newName = "Deafult";
     public String newDescription;
     public static ArrayList<Project> projects;
+    int numId = 0;
 
 
     @Override
@@ -37,16 +38,6 @@ public class ProjectActivity extends AppCompatActivity {
         SharedPreferences.Editor editor = sharedPref.edit();
         Map<String,?> keys = sharedPref.getAll();
         //editor.clear();editor.commit();
-        if(keys != null) {
-            for (Map.Entry<String, ?> entry : keys.entrySet()) {
-                Project proj = new Project(entry.getValue().toString());
-                //proj.fromString(entry.getValue().toString(),proj);
-                Log.d("projectActivity",proj.projectName +" : "+ proj.projectDescription );
-                Log.e("projectActivity",entry.getValue().toString() );
-                addCardView(proj.projectName, proj.projectDescription);
-            }
-        }
-
 
         Bundle extras = getIntent().getExtras();
         if(extras != null){
@@ -59,6 +50,23 @@ public class ProjectActivity extends AppCompatActivity {
             editor.commit();
         }
 
+        if(keys != null) {
+            for (Map.Entry<String, ?> entry : keys.entrySet()) {
+                Project proj = new Project(entry.getValue().toString());
+                //proj.fromString(entry.getValue().toString(),proj);
+                Log.d("projectActivity",proj.projectName +" : "+ proj.projectDescription );
+                Log.e("projectActivity", entry.getValue().toString());
+                projects.add(proj);
+                addCardView(proj.projectName,proj.projectDescription );
+            }
+        }
+        Log.i("projectActivity", projects.size() + "");
+        ViewGroup gridlayout = (ViewGroup) findViewById(R.id.grid);
+        for(int i = 0; i < projects.size();i++){
+            View cv = gridlayout.getChildAt(i);
+            ((TextView)cv.findViewById(R.id.card_name)).setText(projects.get(i).projectName);
+            ((TextView)cv.findViewById(R.id.card_description)).setText(projects.get(i).projectDescription);
+        }
     }
 
     public void showDialog(View v){
@@ -73,8 +81,7 @@ public class ProjectActivity extends AppCompatActivity {
         ((TextView)cardView.findViewById(R.id.card_name)).setText(name);
         ((TextView)cardView.findViewById(R.id.card_description)).setText(des);
         //((ImageView)cardView.findViewById(R.id.card_photo));
+
+        numId ++;
     }
-
-    public void Irparaedicaodoinsightcard()
-
 }
