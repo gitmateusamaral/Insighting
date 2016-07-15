@@ -33,14 +33,18 @@ public class ProjectActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         projects = new ArrayList<Project>();
-        SharedPreferences sharedPref = this.getPreferences(Context.MODE_PRIVATE);
+        SharedPreferences sharedPref = this.getSharedPreferences("Projects", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPref.edit();
-
         Map<String,?> keys = sharedPref.getAll();
-
-        for(Map.Entry<String,?> entry : keys.entrySet()){
-            Project proj = new Project(entry.getValue().toString());
-            addCardView(proj.projectName, proj.projectDescription);
+        //editor.clear();editor.commit();
+        if(keys != null) {
+            for (Map.Entry<String, ?> entry : keys.entrySet()) {
+                Project proj = new Project(entry.getValue().toString());
+                //proj.fromString(entry.getValue().toString(),proj);
+                Log.d("projectActivity",proj.projectName +" : "+ proj.projectDescription );
+                Log.e("projectActivity",entry.getValue().toString() );
+                addCardView(proj.projectName, proj.projectDescription);
+            }
         }
 
 
@@ -49,7 +53,7 @@ public class ProjectActivity extends AppCompatActivity {
             String name = extras.get("projectname").toString();
             String des = extras.get("projectdescription").toString();
             addCardView(name, des);
-            Project p = new Project(name,"id",des);
+            Project p = new Project(name,"luca",des);
             projects.add(p);
             editor.putString(p.projectName, p.AsString());
             editor.commit();
@@ -70,4 +74,7 @@ public class ProjectActivity extends AppCompatActivity {
         ((TextView)cardView.findViewById(R.id.card_description)).setText(des);
         //((ImageView)cardView.findViewById(R.id.card_photo));
     }
+
+    public void Irparaedicaodoinsightcard()
+
 }

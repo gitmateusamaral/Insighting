@@ -2,6 +2,8 @@ package com.example.facebook.insighting;
 
 import java.util.ArrayList;
 import java.lang.String;
+import java.util.StringTokenizer;
+
 //DO NOT USE THESE CARACTERS ;|#
 public class Project {
     String projectID;
@@ -14,17 +16,33 @@ public class Project {
         projectName = name;
         projectID = id;
         projectDescription = description;
+        cards = new ArrayList<InsightCard>();
+        categoriesList =  new ArrayList<String>();
     }
 
     public Project (String p){
-        String[] info = p.split("|");
-        projectID = info[0];
-        projectName = info[1];
+        StringTokenizer tk = new StringTokenizer(p,"|");
+        projectID = tk.nextToken();
+        projectDescription = tk.nextToken();
+        projectName = tk.nextToken();
 
-        String[] categories = info[2].substring(0,info.length-2).split("#");
+        /*String[] categories = info[].substring(0,info.length-2).split("#");
         for(String c : categories){
             categoriesList.add(c);
-        }
+        }*/
+    }
+
+    public void fromString(String p, Project _proj){
+        String[] info = p.split("|");
+        this.projectID = info[0];
+        this.projectDescription = info[1];
+        this.projectName = info[2];
+
+
+        _proj.projectID = info[0];
+        _proj.projectDescription = info[1];
+        _proj.projectName = info[2];
+
     }
 
     public void addInsightCard(String title, String data){
@@ -32,15 +50,15 @@ public class Project {
     }
 
     public String AsString(){
-        String ic = "";
+        /*String ic = "";
         String cl = "";
         for(InsightCard i : cards) {
             ic += i.AsString();
         }
         for(String c : categoriesList){
             cl += c+"#";
-        }
-        return projectID +"|"+projectName+"|"+cl+"|"+ic;
+        }*/
+        return projectID +"|"+projectDescription+"|"+projectName;
     }
 
     public ArrayList<InsightCard> findCardsWithCategory(String c){
