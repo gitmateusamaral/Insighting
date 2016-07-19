@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<instant-run
+    abi="armeabi-v7a,armeabi"
+    api-level="22"
+    density="hdpi"
+    format="7"
+    timestamp="1308664010281206"
+    token="2969447853816843916"
+    verifier="COMPATIBLE" >
+
+    <task
+        name="javac"
+        duration="285" />
+    <task
+        name="instant-run-dex"
+        duration="949" />
+    <task
+        name="instant-run-transform"
+        duration="56" />
+    <task
+        name="verifier"
+        duration="3" />
+
+    <artifact
+        location="C:\Users\JORGE\AndroidStudioProjects\RingCrush\app\build\intermediates\reload-dex\debug\classes.dex"
+        type="RELOAD_DEX" />
+
+    <build timestamp="1306416955034682" >
+        <artifact
+            location="C:\Users\JORGE\AndroidStudioProjects\RingCrush\app\build\outputs\apk\app-debug.apk"
+            type="MAIN" />
+    </build>
+    <build
+        timestamp="1308478358088337"
+        verifier="FIELD_ADDED" >
+        <artifact
+            location="C:\Users\JORGE\AndroidStudioProjects\RingCrush\app\build\intermediates\transforms\dex\debug\folders\1000\5\slice_5\classes.dex"
+            type="DEX" />
+    </build>
+    <build
+        timestamp="1308616751666772"
+        verifier="COMPATIBLE" >
+        <artifact
+            location="C:\Users\JORGE\AndroidStudioProjects\RingCrush\app\build\intermediates\builds\debug\1308616751666772\classes.dex"
+            type="RELOAD_DEX" />
+    </build>
+    <build
+        timestamp="1308664010281206"
+        verifier="COMPATIBLE" >
+        <artifact
+            location="C:\Users\JORGE\AndroidStudioProjects\RingCrush\app\build\intermediates\reload-dex\debug\classes.dex"
+            type="RELOAD_DEX" />
+    </build>
+
+</instant-run>
