@@ -42,11 +42,12 @@
         android:layout_width="fill_parent"
         android:layout_height="30dp"
         android:text="PROJECT"
-        android:id="@+id/button"
+        android:id="@+id/title_project"
         android:background="#10a092"
         android:layout_marginTop="30dp"
         android:textColor="#fff"
-        android:layout_below="@+id/imageView2"/>
+        android:layout_below="@+id/imageView2"
+        />
 
     <ScrollView
         android:layout_width="match_parent"

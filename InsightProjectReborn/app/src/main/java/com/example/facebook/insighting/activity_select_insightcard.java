@@ -25,5 +25,9 @@ public class activity_select_insightcard extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_selection_insightcard);
+        Bundle extras = getIntent().getExtras();
+        if(extras != null) {
+            ((TextView) (findViewById(R.id.title_project))).setText(extras.getString("project_name"));
+        }
     }
 }

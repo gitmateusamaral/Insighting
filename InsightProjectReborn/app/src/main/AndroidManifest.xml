@@ -22,7 +22,8 @@
         <activity
             android:name=".project_creation_activity"
             android:noHistory="true" />
-        <activity android:name=".EditInsightCard" >
+        <activity android:name=".EditInsightCard" ></activity>
+        <activity android:name=".activity_select_insightcard" >
         </activity>
     </application>
 

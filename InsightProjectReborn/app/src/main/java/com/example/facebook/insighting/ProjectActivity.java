@@ -1,6 +1,7 @@
 package com.example.facebook.insighting;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Typeface;
@@ -74,7 +75,7 @@ public class ProjectActivity extends AppCompatActivity {
         ViewGroup gridlayout = (ViewGroup) findViewById(R.id.grid);
 
         for(int i = 0; i < projects.size();i++){
-            Log.d("ProjectActivity",projects.get(i).projectName+"!!");
+            Log.d("ProjectActivity", projects.get(i).projectName + "!!");
             inflater.inflate(R.layout.project_file, gridlayout);
             View cv = gridlayout.getChildAt(i);
             ((TextView)cv.findViewById(R.id.project_name)).setText(projects.get(i).projectName);
@@ -86,6 +87,7 @@ public class ProjectActivity extends AppCompatActivity {
         TextView x = (TextView)(v.findViewById(R.id.project_name));
         i.putExtra("project_name",x.getText().toString());
         startActivity(i);
+        Log.d("ProjectActivity",x.getText().toString());
     }
 
 }
