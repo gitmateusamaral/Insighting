@@ -49,23 +49,21 @@
         android:layout_below="@+id/imageView2"/>
 
     <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:id="@+id/scrollView"
         android:layout_below="@+id/button"
-        android:layout_marginLeft="0dp"
-        android:layout_marginRight="0dp"
+        android:layout_centerHorizontal="true"
         >
 
         <GridLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_centerHorizontal="true"
-            android:layout_below="@+id/button"
-            android:layout_alignParentBottom="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:id="@+id/grid"
             android:columnCount="2"
-            android:rowCount="5">
+            android:rowCount="5"
+            android:foregroundGravity="center"
+            >
 
         </GridLayout>
     </ScrollView>
@@ -75,7 +73,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/overlay"
         android:layout_centerInParent="true"
-        android:foregroundGravity="center">
+        android:layout_gravity="center">
     </RelativeLayout>
 
 </RelativeLayout>

@@ -44,16 +44,15 @@ public class ProjectActivity extends AppCompatActivity {
        // editor.clear();editor.commit();
 
         Bundle extras = getIntent().getExtras();
+
         if(extras != null){
             String name = extras.get("projectname").toString();
             String des = extras.get("projectdescription").toString();
-            addCardView(name, des);
             Project p = new Project(name,"luca",des);
             projects.add(p);
             editor.putString(p.projectName, p.AsString());
             editor.commit();
         }
-
 
         if(keys != null) {
             for (Map.Entry<String, ?> entry : keys.entrySet()) {
@@ -61,12 +60,8 @@ public class ProjectActivity extends AppCompatActivity {
                 projects.add(proj);
             }
         }
-        ViewGroup gridlayout = (ViewGroup) findViewById(R.id.grid);
-        for(int i = 0; i < projects.size();i++){
-            View cv = gridlayout.getChildAt(i);
-            ((TextView)cv.findViewById(R.id.card_name)).setText(projects.get(i).projectName);
-            ((TextView)cv.findViewById(R.id.card_description)).setText(projects.get(i).projectDescription);
-        }
+        addCardView();
+
     }
 
     public void showDialog(View v){
@@ -74,14 +69,23 @@ public class ProjectActivity extends AppCompatActivity {
         startActivity(i);
     }
 
-    public void addCardView(String name, String des){
+    public void addCardView(){
         LayoutInflater inflater = (LayoutInflater) this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         ViewGroup gridlayout = (ViewGroup) findViewById(R.id.grid);
-        View cardView = inflater.inflate(R.layout.cardview, gridlayout);
-        ((TextView)cardView.findViewById(R.id.card_name)).setText(name);
-        ((TextView)cardView.findViewById(R.id.card_description)).setText(des);
-        //((ImageView)cardView.findViewById(R.id.card_photo));
 
-        numId ++;
+        for(int i = 0; i < projects.size();i++){
+            Log.d("ProjectActivity",projects.get(i).projectName+"!!");
+            inflater.inflate(R.layout.project_file, gridlayout);
+            View cv = gridlayout.getChildAt(i);
+            ((TextView)cv.findViewById(R.id.project_name)).setText(projects.get(i).projectName);
+        }
     }
+
+    public void enterProject(View v){
+        Intent i = new Intent(this,activity_select_insightcard.class);
+        TextView x = (TextView)(v.findViewById(R.id.project_name));
+        i.putExtra("project_name",x.getText().toString());
+        startActivity(i);
+    }
+
 }
