@@ -1,25 +1,15 @@
 package com.example.facebook.insighting;
 
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.RecyclerView;
-import android.text.Layout;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.WindowManager;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Map;
@@ -42,11 +32,21 @@ public class ProjectActivity extends AppCompatActivity {
         SharedPreferences sharedPref = this.getSharedPreferences("Projects", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPref.edit();
         Map<String,?> keys = sharedPref.getAll();
-       // editor.clear();editor.commit();
+       //editor.clear();editor.commit();
 
         Bundle extras = getIntent().getExtras();
 
-        if(extras != null){
+
+
+        if(keys != null) {
+            for (Map.Entry<String, ?> entry : keys.entrySet()) {
+                Log.e("projectActivity",entry.getValue().toString());
+                Project proj = new Project(entry.getValue().toString());
+                projects.add(proj);
+            }
+        }
+
+        if((sharedPref.getAll().size() != 0|| extras != null)){
             String name = extras.get("projectname").toString();
             String des = extras.get("projectdescription").toString();
             Project p = new Project(name,"luca",des);
@@ -55,12 +55,6 @@ public class ProjectActivity extends AppCompatActivity {
             editor.commit();
         }
 
-        if(keys != null) {
-            for (Map.Entry<String, ?> entry : keys.entrySet()) {
-                Project proj = new Project(entry.getValue().toString());
-                projects.add(proj);
-            }
-        }
         addCardView();
 
     }
@@ -83,9 +77,10 @@ public class ProjectActivity extends AppCompatActivity {
     }
 
     public void enterProject(View v){
-        Intent i = new Intent(this,activity_select_insightcard.class);
+        SharedPreferences sharedPref = this.getSharedPreferences("Projects", Context.MODE_PRIVATE);
+        Intent i = new Intent(this,SelectInsightActivity.class);
         TextView x = (TextView)(v.findViewById(R.id.project_name));
-        i.putExtra("project_name",x.getText().toString());
+        i.putExtra("project", sharedPref.getString(x.getText().toString(), ""));
         startActivity(i);
         Log.d("ProjectActivity",x.getText().toString());
     }

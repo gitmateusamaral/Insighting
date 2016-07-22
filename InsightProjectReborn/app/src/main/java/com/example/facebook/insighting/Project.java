@@ -9,7 +9,7 @@ public class Project {
     String projectID;
     public String projectName;
     public String projectDescription;
-    ArrayList<InsightCard> cards;
+    public ArrayList<InsightCard> cards;
     ArrayList<String> categoriesList;
 
     public Project(String name,String id,String description){
@@ -37,15 +37,15 @@ public class Project {
     }
 
     public String AsString(){
-        /*String ic = "";
+        String ic = "";
         String cl = "";
         for(InsightCard i : cards) {
             ic += i.AsString();
         }
         for(String c : categoriesList){
             cl += c+"#";
-        }*/
-        return projectID +"|"+projectDescription+"|"+projectName;
+        }
+        return projectID +"|"+projectDescription+"|"+projectName+"|"+ic;
     }
 
     public ArrayList<InsightCard> findCardsWithCategory(String c){

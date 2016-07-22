@@ -80,15 +80,17 @@
         android:layout_centerInParent="true"
         android:foregroundGravity="center">
     </RelativeLayout>
-
     <EditText
-        android:layout_width="340dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="#fff"
         android:maxLength="20"
         android:id="@+id/ic_textTitle"
-        android:layout_above="@+id/overlay"
-        android:layout_centerHorizontal="true" />
+        android:text="Title"
+        android:layout_alignTop="@+id/scrollView"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:background="@drawable/border"/>
 
     <EditText
         android:layout_width="340dp"
@@ -98,8 +100,10 @@
         android:ems="10"
         android:id="@+id/ic_textDescription"
         android:maxLength="300"
-        android:layout_below="@+id/overlay"
-        android:layout_centerHorizontal="true" />
+        android:text="Descriçãoshdiohasldjsakldjksajdksaljdksaljdksaljdlsajdklsajdklsajdklsajdklsajkdlsajkdlsajkdlsajkdljsakdljsakldjsajdksaljdsajdksaljdksaljdksajdlksajdlsajd"
+        android:layout_centerVertical="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
 
 </RelativeLayout>
