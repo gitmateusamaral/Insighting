@@ -30,7 +30,7 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/card_name"
                 android:textSize="16dp"
-                android:text="Insighting"
+                android:text="Project"
                 android:textStyle="bold"
                 android:textColor="#fff"
                 android:layout_alignParentTop="true"
