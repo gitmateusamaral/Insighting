@@ -32,19 +32,6 @@ public class Project {
         }*/
     }
 
-    public void fromString(String p, Project _proj){
-        String[] info = p.split("|");
-        this.projectID = info[0];
-        this.projectDescription = info[1];
-        this.projectName = info[2];
-
-
-        _proj.projectID = info[0];
-        _proj.projectDescription = info[1];
-        _proj.projectName = info[2];
-
-    }
-
     public void addInsightCard(String title, String data){
         cards.add(new InsightCard(title,data));
     }

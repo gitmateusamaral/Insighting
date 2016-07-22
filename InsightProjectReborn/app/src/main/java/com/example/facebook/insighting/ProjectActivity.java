@@ -54,14 +54,9 @@ public class ProjectActivity extends AppCompatActivity {
         if(keys != null) {
             for (Map.Entry<String, ?> entry : keys.entrySet()) {
                 Project proj = new Project(entry.getValue().toString());
-                //proj.fromString(entry.getValue().toString(),proj);
-                Log.d("projectActivity",proj.projectName +" : "+ proj.projectDescription );
-                Log.e("projectActivity", entry.getValue().toString());
                 projects.add(proj);
-                addCardView(proj.projectName,proj.projectDescription );
             }
         }
-        Log.i("projectActivity", projects.size() + "");
         ViewGroup gridlayout = (ViewGroup) findViewById(R.id.grid);
         for(int i = 0; i < projects.size();i++){
             View cv = gridlayout.getChildAt(i);
