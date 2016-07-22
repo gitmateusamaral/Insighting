@@ -3,6 +3,7 @@ package com.example.facebook.insighting;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
@@ -27,10 +28,13 @@ public class ProjectActivity extends AppCompatActivity {
     public String newDescription;
     public static ArrayList<Project> projects;
     int numId = 0;
+    //TextView cardName = (TextView) findViewById(R.id.card_name);
+    //Typeface fontinha = Typeface.createFromAsset(getAssets(), "fonts/Quicksand-Bold.tff");
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         projects = new ArrayList<Project>();
