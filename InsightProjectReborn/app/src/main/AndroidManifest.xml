@@ -11,7 +11,6 @@
         <activity
             android:name=".ProjectActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
-            android:noHistory="true"
             android:screenOrientation="portrait" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -19,9 +18,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".project_creation_activity"
-            android:noHistory="true" />
+        <activity android:name=".project_creation_activity" />
         <activity android:name=".EditInsightCard" ></activity>
         <activity android:name=".SelectInsightActivity" >
         </activity>

@@ -22,7 +22,6 @@ public class ProjectActivity extends AppCompatActivity {
     //TextView cardName = (TextView) findViewById(R.id.card_name);
     //Typeface fontinha = Typeface.createFromAsset(getAssets(), "fonts/Quicksand-Bold.tff");
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -34,25 +33,25 @@ public class ProjectActivity extends AppCompatActivity {
         Map<String,?> keys = sharedPref.getAll();
        //editor.clear();editor.commit();
 
-        Bundle extras = getIntent().getExtras();
-
-
+        Intent i = getIntent();
 
         if(keys != null) {
             for (Map.Entry<String, ?> entry : keys.entrySet()) {
-                Log.e("projectActivity",entry.getValue().toString());
                 Project proj = new Project(entry.getValue().toString());
                 projects.add(proj);
             }
         }
 
-        if((sharedPref.getAll().size() != 0|| extras != null)){
-            String name = extras.get("projectname").toString();
-            String des = extras.get("projectdescription").toString();
-            Project p = new Project(name,"luca",des);
-            projects.add(p);
-            editor.putString(p.projectName, p.AsString());
-            editor.commit();
+        if(i != null){
+                Bundle extras = i.getExtras();
+                if(extras != null){
+                String name = extras.getString("projectname");
+                String des = extras.getString("projectdescription");
+                Project p = new Project(name,"luca",des);
+                projects.add(p);
+                editor.putString(p.projectName, p.AsString());
+                editor.apply();
+            }
         }
 
         addCardView();
@@ -69,7 +68,6 @@ public class ProjectActivity extends AppCompatActivity {
         ViewGroup gridlayout = (ViewGroup) findViewById(R.id.grid);
 
         for(int i = 0; i < projects.size();i++){
-            Log.d("ProjectActivity", projects.get(i).projectName + "!!");
             inflater.inflate(R.layout.project_file, gridlayout);
             View cv = gridlayout.getChildAt(i);
             ((TextView)cv.findViewById(R.id.project_name)).setText(projects.get(i).projectName);
@@ -82,7 +80,6 @@ public class ProjectActivity extends AppCompatActivity {
         TextView x = (TextView)(v.findViewById(R.id.project_name));
         i.putExtra("project", sharedPref.getString(x.getText().toString(), ""));
         startActivity(i);
-        Log.d("ProjectActivity",x.getText().toString());
     }
 
 }

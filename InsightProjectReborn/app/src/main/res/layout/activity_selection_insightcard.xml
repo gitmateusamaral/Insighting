@@ -37,7 +37,9 @@
         android:layout_alignParentEnd="false"
         android:layout_marginTop="10dp"
         android:layout_marginRight="15dp"
-        android:clickable="true"/>
+        android:contentDescription="@string/plus"
+        android:clickable="true"
+        />
 
     <Button
         android:layout_width="fill_parent"
