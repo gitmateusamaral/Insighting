@@ -48,6 +48,11 @@ public class InsightCardActivity extends AppCompatActivity {
         startActivity(i);
     }
 
+    public void onBackPressed()
+    {
+        Intent i = new Intent(this,ProjectActivity.class);
+        startActivity(i);
+    }
 
     public void editInsightCard(View v){
         Intent i = new Intent(this, EditInsightCard.class);

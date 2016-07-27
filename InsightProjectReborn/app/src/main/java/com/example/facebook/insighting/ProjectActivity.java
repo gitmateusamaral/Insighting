@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Map;
@@ -18,7 +19,7 @@ public class ProjectActivity extends AppCompatActivity {
     public String newName = "Deafult";
     public String newDescription;
     public static ArrayList<Project> projects;
-    int numId = 0;
+    int num = 0;
     //TextView cardName = (TextView) findViewById(R.id.card_name);
     //Typeface fontinha = Typeface.createFromAsset(getAssets(), "fonts/Quicksand-Bold.tff");
 
@@ -81,5 +82,16 @@ public class ProjectActivity extends AppCompatActivity {
         i.putExtra("project", sharedPref.getString(x.getText().toString(), ""));
         startActivity(i);
     }
+
+    public void onBackPressed()
+    {
+        if(num == 0) {
+            Toast.makeText(this, "Press again", Toast.LENGTH_LONG).show();
+            num++;
+        }else{
+            android.os.Process.killProcess(android.os.Process.myPid());
+        }
+    }
+
 
 }

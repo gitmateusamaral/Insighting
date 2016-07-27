@@ -50,6 +50,13 @@ public class EditInsightCard extends AppCompatActivity {
         startActivity(i);
     }
 
+    public void onBackPressed()
+    {
+        Intent i = new Intent(this,InsightCardActivity.class);
+        i.putExtra("project", p.AsString());
+        startActivity(i);
+    }
+
     public void saveProject(){
         SharedPreferences sharedPref = this.getSharedPreferences("Projects", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPref.edit();
