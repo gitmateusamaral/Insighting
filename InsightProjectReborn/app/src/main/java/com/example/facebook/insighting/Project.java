@@ -27,13 +27,11 @@ public class Project {
         projectDescription = tk[1];
         projectName = tk[2];
         String ic_cards = tk[3];
-        if(ic_cards != "") {
             String[] ic = ic_cards.split(";");
-
+            if(!ic_cards.equals(""))
             for (String i : ic) {
                 cards.add(new InsightCard(i));
             }
-        }
         /*String[] categories = info[].substring(0,info.length-2).split("#");
         for(String c : categories){
             categoriesList.add(c);

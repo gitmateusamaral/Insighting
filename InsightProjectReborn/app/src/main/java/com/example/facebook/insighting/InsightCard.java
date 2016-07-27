@@ -1,7 +1,10 @@
 package com.example.facebook.insighting;
 
+import android.util.Log;
+
 import java.util.ArrayList;
 import java.lang.String;
+import java.util.StringTokenizer;
 
 public class InsightCard {
     String title;
@@ -14,8 +17,9 @@ public class InsightCard {
     }
 
     public InsightCard (String i){
-        title  = i.split("#")[0];
-        data = i.split("#")[1].replace(";","");
+        StringTokenizer r = new StringTokenizer(i,"#");
+        title  = r.nextToken();
+        data = r.nextToken().replace(";","");
     }
 
     public String AsString(){
