@@ -76,7 +76,7 @@ public class ProjectActivity extends AppCompatActivity {
 
     public void enterProject(View v){
         SharedPreferences sharedPref = this.getSharedPreferences("Projects", Context.MODE_PRIVATE);
-        Intent i = new Intent(this,SelectInsightActivity.class);
+        Intent i = new Intent(this,InsightCardActivity.class);
         TextView x = (TextView)(v.findViewById(R.id.project_name));
         i.putExtra("project", sharedPref.getString(x.getText().toString(), ""));
         startActivity(i);

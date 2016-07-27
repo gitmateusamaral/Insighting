@@ -19,8 +19,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".project_creation_activity" />
-        <activity android:name=".EditInsightCard" ></activity>
-        <activity android:name=".SelectInsightActivity" >
+        <activity android:name=".EditInsightCard" />
+        <activity android:name=".InsightCardActivity" >
         </activity>
     </application>
 
