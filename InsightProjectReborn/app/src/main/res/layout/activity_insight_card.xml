@@ -32,7 +32,7 @@
     android:layout_height="30dp"
     android:id="@+id/addInsightCard"
     android:background="@drawable/plus"
-    android:onClick="editInsightCard"
+    android:onClick="editCreateInsightCard"
     android:layout_alignParentRight="true"
     android:layout_alignParentEnd="false"
     android:layout_marginTop="10dp"
@@ -42,7 +42,7 @@
     />
 
 <Button
-    android:layout_width="fill_parent"
+    android:layout_width="match_parent"
     android:layout_height="30dp"
     android:text="PROJECTS"
     android:id="@+id/title_project"
@@ -50,7 +50,8 @@
     android:layout_marginTop="30dp"
     android:textColor="#fff"
     android:layout_below="@+id/imageView2"
-    />
+    android:layout_alignParentLeft="true"
+    android:layout_alignParentStart="true" />
 
 <ScrollView
     android:layout_width="match_parent"

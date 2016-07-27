@@ -22,16 +22,16 @@ public class Project {
 
     public Project (String p){
         cards = new ArrayList<InsightCard>();
-        StringTokenizer tk = new StringTokenizer(p,"|");
-        projectID = tk.nextToken();
-        projectDescription = tk.nextToken();
-        projectName = tk.nextToken();
-        String ic_cards = tk.nextToken();
+        String[] tk = p.split("\\|",4);
+        projectID = tk[0];
+        projectDescription = tk[1];
+        projectName = tk[2];
+        String ic_cards = tk[3];
         if(ic_cards != "") {
-            StringTokenizer insightcards = new StringTokenizer(ic_cards, ";");
+            String[] ic = ic_cards.split(";");
 
-            while (insightcards.hasMoreTokens()) {
-                cards.add(new InsightCard(insightcards.nextToken()));
+            for (String i : ic) {
+                cards.add(new InsightCard(i));
             }
         }
         /*String[] categories = info[].substring(0,info.length-2).split("#");
@@ -53,7 +53,7 @@ public class Project {
         /*for(String c : categoriesList){
             cl += c+"#";
         }*/
-        return projectID +"|"+projectDescription+"|"+projectName+"|"+ic.substring(0,ic.length() - 2);
+        return projectID +"|"+projectDescription+"|"+projectName+"|"+ic;
     }
 
     public ArrayList<InsightCard> findCardsWithCategory(String c){
