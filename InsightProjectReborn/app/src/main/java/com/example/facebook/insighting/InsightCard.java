@@ -14,6 +14,8 @@ public class InsightCard {
     }
 
     public InsightCard (String i){
+        title  = i.split("#")[0];
+        data = i.split("#")[1].replace(";","");
     }
 
     public String AsString(){

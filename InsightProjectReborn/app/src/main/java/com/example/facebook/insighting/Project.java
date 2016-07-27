@@ -21,11 +21,19 @@ public class Project {
     }
 
     public Project (String p){
+        cards = new ArrayList<InsightCard>();
         StringTokenizer tk = new StringTokenizer(p,"|");
         projectID = tk.nextToken();
         projectDescription = tk.nextToken();
         projectName = tk.nextToken();
+        String ic_cards = tk.nextToken();
+        if(ic_cards != "") {
+            StringTokenizer insightcards = new StringTokenizer(ic_cards, ";");
 
+            while (insightcards.hasMoreTokens()) {
+                cards.add(new InsightCard(insightcards.nextToken()));
+            }
+        }
         /*String[] categories = info[].substring(0,info.length-2).split("#");
         for(String c : categories){
             categoriesList.add(c);
@@ -42,10 +50,10 @@ public class Project {
         for(InsightCard i : cards) {
             ic += i.AsString();
         }
-        for(String c : categoriesList){
+        /*for(String c : categoriesList){
             cl += c+"#";
-        }
-        return projectID +"|"+projectDescription+"|"+projectName+"|"+ic;
+        }*/
+        return projectID +"|"+projectDescription+"|"+projectName+"|"+ic.substring(0,ic.length() - 2);
     }
 
     public ArrayList<InsightCard> findCardsWithCategory(String c){
