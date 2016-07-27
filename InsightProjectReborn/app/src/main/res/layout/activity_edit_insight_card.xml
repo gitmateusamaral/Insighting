@@ -37,7 +37,8 @@
         android:layout_alignParentEnd="false"
         android:layout_marginTop="10dp"
         android:layout_marginRight="15dp"
-        android:onClick="saveInsightCard"/>
+        android:onClick="saveInsightCard"
+        />
 
     <Button
         android:layout_width="fill_parent"
@@ -45,43 +46,51 @@
         android:text="PROJECTS"
         android:id="@+id/button"
         android:background="#10a092"
-        android:layout_marginTop="61dp"
+        android:layout_marginTop="40dp"
         android:textColor="#fff"
         android:layout_below="@+id/imageView2"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
-
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="fill_parent"
+        android:layout_below="@id/button"
+        android:background="#fff"></RelativeLayout>
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="#fff"
-        android:maxLength="20"
+
+        android:textColor="#000000"
+        android:maxLength="15"
         android:id="@+id/ic_textTitle"
         android:text=""
         android:hint="Title"
         android:textColorHint="#C0C0C0"
         android:textAlignment="center"
-        android:textSize="50dp"
+        android:textSize="40dp"
+        android:layout_marginLeft="10dp"
         android:layout_below="@+id/button"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         />
 
     <EditText
+        android:saveEnabled="true"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="#fff"
+        android:textColor="#000"
         android:inputType="textMultiLine"
         android:ems="10"
         android:textSize="25dp"
         android:id="@+id/ic_textDescription"
         android:maxLength="300"
         android:hint="Description..."
+        android:layout_marginLeft="10dp"
         android:textColorHint="#C0C0C0"
-        android:layout_centerVertical="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/ic_textTitle" />
 
 
 </RelativeLayout>
