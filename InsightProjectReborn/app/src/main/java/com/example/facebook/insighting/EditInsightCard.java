@@ -41,8 +41,8 @@ public class EditInsightCard extends AppCompatActivity {
     public void saveInsightCard(View v){
         EditText title = (EditText) findViewById(R.id.ic_textTitle);
         EditText des = (EditText) findViewById(R.id.ic_textDescription);
-        p.cards.get(ic_id).title = title.getText().toString();
-        p.cards.get(ic_id).data = des.getText().toString();
+        p.cards.get(ic_id).setTitle(title.getText().toString());
+        p.cards.get(ic_id).setData(des.getText().toString());
 
         Intent i = new Intent(this, InsightCardActivity.class);
         i.putExtra("project", p.AsString());
@@ -63,6 +63,7 @@ public class EditInsightCard extends AppCompatActivity {
         editor.putString(p.projectName,p.AsString());
         editor.apply();
     }
+
 
 
 }

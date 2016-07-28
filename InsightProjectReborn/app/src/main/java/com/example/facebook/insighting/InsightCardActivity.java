@@ -10,10 +10,17 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
 
 public class InsightCardActivity extends AppCompatActivity {
 
     public Project p;
+    public String formattedDate;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,18 +37,18 @@ public class InsightCardActivity extends AppCompatActivity {
         LayoutInflater inflater = (LayoutInflater) this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         ViewGroup gridlayout = (ViewGroup) findViewById(R.id.grid);
 
-        for(int i = 0; i < p.cards.size();i++){
+        for(int i = 0; i < p.cards.size(); i++) {
             inflater.inflate(R.layout.cardview, gridlayout);
             View cv = gridlayout.getChildAt(i);
             ((TextView)cv.findViewById(R.id.card_name)).setText(p.cards.get(i).title);
-            ((TextView)cv.findViewById(R.id.card_description)).setText("Last edit: 28/07");
+            ((TextView) cv.findViewById(R.id.card_description)).setText("Last Edit: "+p.cards.get(i).date);
         }
     }
 
     public void editCreateInsightCard(View v)
     {
         Intent i = new Intent(this, EditInsightCard.class);
-        p.addInsightCard("t","d");
+        p.addInsightCard(".",".");
         i.putExtra("project", p.AsString());
         i.putExtra("ic_id", p.cards.size()-1);
         //Log.d("InsightCardActivity",p.AsString());

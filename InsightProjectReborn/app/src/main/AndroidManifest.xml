@@ -19,9 +19,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".project_creation_activity" />
-        <activity android:name=".EditInsightCard" />
-        <activity android:name=".InsightCardActivity" >
+        <activity android:name=".project_creation_activity" android:screenOrientation="portrait"
+            android:configChanges="keyboardHidden|orientation|screenSize"  />
+        <activity android:name=".EditInsightCard" android:screenOrientation="portrait"
+            android:configChanges="keyboardHidden|orientation|screenSize"  />
+        <activity android:name=".InsightCardActivity" android:screenOrientation="portrait"
+            android:configChanges="keyboardHidden|orientation|screenSize"  >
         </activity>
     </application>
 

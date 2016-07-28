@@ -67,7 +67,6 @@
         android:text=""
         android:hint="Title"
         android:textColorHint="#C0C0C0"
-        android:textAlignment="center"
         android:textSize="40dp"
         android:layout_marginLeft="10dp"
         android:layout_below="@+id/button"
