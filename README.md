@@ -30,14 +30,14 @@ ___________
 </br>
 
 <p align="center">
-  <img src="http://i.imgur.com/D4wJu57.png">
-  <img src="http://i.imgur.com/zfYLsyl.png">
+  <img src="http://i.imgur.com/RTqB4FY.png">
+  <img src="http://i.imgur.com/AnrCUyD.png">
 </p>
 
 </br>
 
 <p align="center">
-  <img src="http://i.imgur.com/Kuk2TwF.png">
+  <img src="http://i.imgur.com/D1XTCvc.png">
 </p>
 
 
