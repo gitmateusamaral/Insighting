@@ -29,8 +29,10 @@ public class EditInsightCard extends AppCompatActivity {
             if(extras != null){
                 p = new Project(extras.getString("project"));
                 ic_id = extras.getInt("ic_id");
-                title.setText(p.cards.get(ic_id).title);
-                des.setText(p.cards.get(ic_id).data);
+                if(!extras.getBoolean("new")) {
+                    title.setText(p.cards.get(ic_id).title);
+                    des.setText(p.cards.get(ic_id).data);
+                }
             }
         }
         Typeface face = Typeface.createFromAsset(getAssets(),"fonts/Quicksand-Regular.ttf");
@@ -41,6 +43,7 @@ public class EditInsightCard extends AppCompatActivity {
     public void saveInsightCard(View v){
         EditText title = (EditText) findViewById(R.id.ic_textTitle);
         EditText des = (EditText) findViewById(R.id.ic_textDescription);
+        if(getIntent().getExtras().getBoolean("new")){p.addInsightCard(".",".");}
         p.cards.get(ic_id).setTitle(title.getText().toString());
         p.cards.get(ic_id).setData(des.getText().toString());
 

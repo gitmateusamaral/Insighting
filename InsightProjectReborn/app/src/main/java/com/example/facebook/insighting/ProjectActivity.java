@@ -1,5 +1,6 @@
 package com.example.facebook.insighting;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -7,8 +8,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Chronometer;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -70,7 +73,28 @@ public class ProjectActivity extends AppCompatActivity {
 
         for(int i = 0; i < projects.size();i++){
             inflater.inflate(R.layout.project_file, gridlayout);
-            View cv = gridlayout.getChildAt(i);
+            final View cv = gridlayout.getChildAt(i);
+            cv.setOnTouchListener(new View.OnTouchListener() {
+                long start;
+                @Override
+                public boolean onTouch(View v, MotionEvent event) {
+                    if (event.getAction() == MotionEvent.ACTION_DOWN) {
+                        start = System.currentTimeMillis();
+                    }
+                    else if (event.getAction() == MotionEvent.ACTION_UP) {
+
+                        if( System.currentTimeMillis() - start >= 2000){
+                            ((ViewGroup) cv.getParent()).removeView(cv);
+                            Log.d("Released", "Button released :" + (System.currentTimeMillis() - start));
+                            SharedPreferences.Editor editor = getSharedPreferences("Projects", Context.MODE_PRIVATE).edit();
+                            TextView t = ((TextView)(cv.findViewById(R.id.project_name)));
+                            editor.remove( t.getText().toString() );
+                        }
+                    }
+                    // TODO Auto-generated method stub
+                    return false;
+                }
+            });
             ((TextView)cv.findViewById(R.id.project_name)).setText(projects.get(i).projectName);
         }
     }
@@ -86,10 +110,10 @@ public class ProjectActivity extends AppCompatActivity {
     public void onBackPressed()
     {
         if(num == 0) {
-            Toast.makeText(this, "Press again", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Press again to close", Toast.LENGTH_LONG).show();
             num++;
         }else{
-            android.os.Process.killProcess(android.os.Process.myPid());
+                finishAffinity();
         }
     }
 

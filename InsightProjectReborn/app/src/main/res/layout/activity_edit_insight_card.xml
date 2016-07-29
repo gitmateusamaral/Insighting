@@ -62,7 +62,7 @@
         android:layout_height="wrap_content"
 
         android:textColor="#000000"
-        android:maxLength="15"
+        android:maxLength="12"
         android:id="@+id/ic_textTitle"
         android:text=""
         android:hint="Title"
