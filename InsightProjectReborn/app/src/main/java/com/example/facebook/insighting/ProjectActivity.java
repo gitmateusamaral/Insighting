@@ -23,6 +23,8 @@ public class ProjectActivity extends AppCompatActivity {
     public String newDescription;
     public static ArrayList<Project> projects;
     int num = 0;
+    SharedPreferences sharedPref;
+    SharedPreferences.Editor editor;
     //TextView cardName = (TextView) findViewById(R.id.card_name);
     //Typeface fontinha = Typeface.createFromAsset(getAssets(), "fonts/Quicksand-Bold.tff");
 
@@ -32,8 +34,8 @@ public class ProjectActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         projects = new ArrayList<Project>();
-        SharedPreferences sharedPref = this.getSharedPreferences("Projects", Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPref.edit();
+        sharedPref = this.getSharedPreferences("Projects", Context.MODE_PRIVATE);
+        editor = sharedPref.edit();
         Map<String,?> keys = sharedPref.getAll();
         //editor.clear();editor.apply();
 
@@ -57,14 +59,29 @@ public class ProjectActivity extends AppCompatActivity {
                 editor.apply();
             }
         }
-
         addCardView();
-
     }
 
     public void showDialog(View v){
         Intent i = new Intent(this,project_creation_activity.class);
         startActivity(i);
+    }
+
+    public void showOptions(View v){
+        View deleteButton = ((View)v.getParent()).findViewById(R.id.deleteButton);
+        //deleteButton.
+        if(deleteButton.getVisibility() == View.VISIBLE){
+            deleteButton.setVisibility(View.GONE);
+        }else{
+            deleteButton.setVisibility(View.VISIBLE);
+        }
+    }
+
+    public void deleteProject(View v){
+        ((ViewGroup)((ViewGroup)v.getParent()).getParent()).removeView(((ViewGroup) v.getParent()));
+        String pn = ((TextView)((ViewGroup)v.getParent()).findViewById(R.id.project_name)).getText().toString();
+        editor.remove(pn);
+        editor.apply();
     }
 
     public void addCardView(){
