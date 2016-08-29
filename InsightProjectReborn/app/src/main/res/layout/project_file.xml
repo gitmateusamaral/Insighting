@@ -12,7 +12,6 @@
         android:id="@+id/imageView"
         android:src="@drawable/pasta"
         android:layout_marginLeft="15dp">
-
         </ImageView>
 
     <ImageButton
@@ -37,7 +36,7 @@
         android:layout_alignRight="@+id/imageView"
         android:layout_alignEnd="@+id/imageView"
         android:text="Project 1"
-        android:textAlignment="center"
+        android:gravity="center"
         android:typeface="normal"
         android:textColor="#ffffff"
         android:layout_marginTop="5dp" />

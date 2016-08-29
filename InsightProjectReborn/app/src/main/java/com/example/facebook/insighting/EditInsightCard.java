@@ -40,6 +40,12 @@ public class EditInsightCard extends AppCompatActivity {
         des.setTypeface(face);
     }
 
+    public void addImage(View v){
+        Intent galleryIntent = new Intent(Intent.ACTION_PICK,
+                android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+        startActivityForResult(galleryIntent, RESULT_FIRST_USER);
+    }
+
     public void saveInsightCard(View v){
         EditText title = (EditText) findViewById(R.id.ic_textTitle);
         EditText des = (EditText) findViewById(R.id.ic_textDescription);
