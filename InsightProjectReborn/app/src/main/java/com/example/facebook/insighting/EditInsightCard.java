@@ -72,7 +72,4 @@ public class EditInsightCard extends AppCompatActivity {
         editor.putString(p.projectName,p.AsString());
         editor.apply();
     }
-
-
-
 }

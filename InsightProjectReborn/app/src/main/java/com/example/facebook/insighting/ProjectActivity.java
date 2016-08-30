@@ -11,7 +11,9 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Chronometer;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -25,6 +27,8 @@ public class ProjectActivity extends AppCompatActivity {
     int num = 0;
     SharedPreferences sharedPref;
     SharedPreferences.Editor editor;
+    private ListView mDrawerList;
+    private ArrayAdapter<String> mAdapter;
     //TextView cardName = (TextView) findViewById(R.id.card_name);
     //Typeface fontinha = Typeface.createFromAsset(getAssets(), "fonts/Quicksand-Bold.tff");
 

@@ -19,12 +19,20 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".project_creation_activity" android:screenOrientation="portrait"
-            android:configChanges="keyboardHidden|orientation|screenSize"  />
-        <activity android:name=".EditInsightCard" android:screenOrientation="portrait"
-            android:configChanges="keyboardHidden|orientation|screenSize"  />
-        <activity android:name=".InsightCardActivity" android:screenOrientation="portrait"
-            android:configChanges="keyboardHidden|orientation|screenSize"  >
+        <activity
+            android:name=".project_creation_activity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".EditInsightCard"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".InsightCardActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity android:name=".LoginActivity" >
         </activity>
     </application>
 
