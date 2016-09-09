@@ -17,6 +17,8 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.firebase.client.Firebase;
+
 import java.util.ArrayList;
 import java.util.Map;
 
@@ -36,6 +38,8 @@ public class ProjectActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
+        Firebase.setAndroidContext(this);
+
         setContentView(R.layout.activity_main);
         projects = new ArrayList<Project>();
         sharedPref = this.getSharedPreferences("Projects", Context.MODE_PRIVATE);
@@ -64,6 +68,12 @@ public class ProjectActivity extends AppCompatActivity {
             }
         }
         addCardView();
+    }
+
+    public void showMenu(View v){
+        Firebase myFirebaseRef = new Firebase("https://insighting-aa229.firebaseio.com/null");
+        myFirebaseRef.child("message").setValue("Do you have data? You'll love Firebase.");
+        Toast.makeText(this, "Rada", Toast.LENGTH_SHORT).show();
     }
 
     public void showDialog(View v){
