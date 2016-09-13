@@ -6,7 +6,9 @@ import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.EditText;
 
 import java.util.Map;
@@ -47,6 +49,11 @@ public class EditInsightCard extends AppCompatActivity {
     }
 
     public void saveInsightCard(View v){
+
+    }
+
+    public void onBackPressed()
+    {
         EditText title = (EditText) findViewById(R.id.ic_textTitle);
         EditText des = (EditText) findViewById(R.id.ic_textDescription);
         if(getIntent().getExtras().getBoolean("new")){p.addInsightCard(".",".");}
@@ -59,12 +66,27 @@ public class EditInsightCard extends AppCompatActivity {
         startActivity(i);
     }
 
-    public void onBackPressed()
-    {
-        Intent i = new Intent(this,InsightCardActivity.class);
+    public void onPause(){
+        super.onPause();
+        EditText title = (EditText) findViewById(R.id.ic_textTitle);
+        EditText des = (EditText) findViewById(R.id.ic_textDescription);
+        if(getIntent().getExtras().getBoolean("new")){p.addInsightCard(".",".");}
+        p.cards.get(ic_id).setTitle(title.getText().toString());
+        p.cards.get(ic_id).setData(des.getText().toString());
+
+        Intent i = new Intent(this, InsightCardActivity.class);
         i.putExtra("project", p.AsString());
+        saveProject();
         startActivity(i);
     }
+
+    public void createTag(View v){
+        ViewGroup tagDisposal = (ViewGroup)findViewById(R.id.tag_disposal);
+        LayoutInflater inflater = (LayoutInflater) this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        inflater.inflate(R.layout.tag, tagDisposal);
+
+    }
+
 
     public void saveProject(){
         SharedPreferences sharedPref = this.getSharedPreferences("Projects", Context.MODE_PRIVATE);
