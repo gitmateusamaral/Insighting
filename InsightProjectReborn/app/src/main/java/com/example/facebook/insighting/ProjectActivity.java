@@ -71,7 +71,7 @@ public class ProjectActivity extends AppCompatActivity {
     }
 
     public void showMenu(View v){
-        Firebase myFirebaseRef = new Firebase("https://insighting-aa229.firebaseio.com/null");
+        Firebase myFirebaseRef = new Firebase("https://insighting-aa229.firebaseio.com/");
         myFirebaseRef.child("message").setValue("Do you have data? You'll love Firebase.");
         Toast.makeText(this, "Rada", Toast.LENGTH_SHORT).show();
     }

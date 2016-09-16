@@ -88,6 +88,7 @@
         android:maxLength="300"
         android:hint="Description..."
         android:layout_marginLeft="10dp"
+
         android:textColorHint="#C0C0C0"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
@@ -99,20 +100,15 @@
             android:id="@+id/tag_area"
             android:layout_below="@id/ic_textDescription"
             android:layout_marginTop="20dp">
-            <GridLayout
-                android:id="@+id/tag_disposal"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
             <EditText
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/tag_text"
-                android:layout_below="@id/tag_disposal"
+
                 android:hint="Tag here..."
-                android:text="dasdsadsa"/>
-
-
-
+                android:text="dasdsadsa"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"/>
             <ImageView
                 android:id="@+id/confirmButton"
                 android:layout_width="30dp"
@@ -120,8 +116,15 @@
                 android:layout_height="25dp"
                 android:layout_marginTop="10dp"
                 android:src="@android:drawable/ic_menu_send"
-                android:layout_toRightOf="@id/tag_text"
-                android:layout_below="@id/tag_disposal"/>
+                android:layout_toRightOf="@id/tag_text" />
+            <GridLayout
+                android:id="@+id/tag_disposal"
+                android:layout_below="@id/confirmButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:columnCount="3"
+                android:rowCount="3"
+                android:layout_marginTop="15dp" />
         </RelativeLayout>
 
         <Button
