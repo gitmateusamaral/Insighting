@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.GridLayout;
 import android.widget.GridView;
+import android.widget.TextView;
 
 import java.util.Map;
 
@@ -87,6 +88,7 @@ public class EditInsightCard extends AppCompatActivity {
         GridLayout tagDisposal = (GridLayout)findViewById(R.id.tag_disposal);
         LayoutInflater inflater = (LayoutInflater) this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         inflater.inflate(R.layout.tag, tagDisposal);
+        ((TextView)(tagDisposal.getChildAt(tagDisposal.getChildCount()-1)).findViewById(R.id.tag_name)).setText(((EditText)findViewById(R.id.tag_text)).getText());
     }
 
 
