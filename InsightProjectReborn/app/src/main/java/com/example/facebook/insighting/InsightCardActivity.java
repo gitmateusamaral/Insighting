@@ -50,7 +50,7 @@ public class InsightCardActivity extends AppCompatActivity {
         Intent i = new Intent(this, EditInsightCard.class);
         i.putExtra("new",true);
         i.putExtra("project", p.AsString());
-        i.putExtra("ic_id", p.cards.size());
+        //i.putExtra("ic_id", p.cards.size());
         //Log.d("InsightCardActivity",p.AsString());
         startActivity(i);
     }

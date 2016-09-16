@@ -45,12 +45,13 @@ public class ProjectActivity extends AppCompatActivity {
         sharedPref = this.getSharedPreferences("Projects", Context.MODE_PRIVATE);
         editor = sharedPref.edit();
         Map<String,?> keys = sharedPref.getAll();
-        //editor.clear();editor.apply();
+        editor.clear();editor.apply();
 
         Intent i = getIntent();
-
-        if(keys != null ) {
+        Log.d("ProjectActivity",keys.values().iterator().toString());
+        if(keys != null && false) {
             for (Map.Entry<String, ?> entry : keys.entrySet()) {
+                Log.d("ProjectActivity",entry.getValue().toString());
                 Project proj = new Project(entry.getValue().toString());
                 projects.add(proj);
             }

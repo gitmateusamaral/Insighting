@@ -70,10 +70,7 @@
             android:id="@+id/grid"
             android:columnCount="2"
             android:rowCount="5"
-            android:foregroundGravity="center"
-            >
-
-        </GridLayout>
+            android:foregroundGravity="center" />
     </ScrollView>
 
     <RelativeLayout
