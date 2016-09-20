@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.lang.String;
 import java.util.StringTokenizer;
 
-//DO NOT USE THESE CARACTERS ;|#
+//DO NOT USE THESE CARACTERS ;|ᔦ + alt255
 public class Project {
     String projectID;
     public String projectName;
@@ -48,10 +48,10 @@ public class Project {
         for(InsightCard i : cards) {
             ic += i.AsString();
         }
-        /*for(String c : categoriesList){
-            cl += c+"#";
-        }*/
-        return projectID +"|"+projectDescription+"|"+projectName+"|"+ic;
+        for(String c : categoriesList){
+            cl += c+"ᔦ";
+        }
+        return projectID +"|"+projectDescription+"|"+projectName+"|"+cl+"|"+ic;
     }
 
     public ArrayList<InsightCard> findCardsWithCategory(String c){

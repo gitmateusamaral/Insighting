@@ -17,6 +17,7 @@ import android.widget.GridView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
 import java.util.Map;
 
 public class EditInsightCard extends AppCompatActivity {
@@ -24,6 +25,7 @@ public class EditInsightCard extends AppCompatActivity {
     public Project p;
     public int ic_id;
     int count = 0;
+    public ArrayList<String> categories;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,7 +33,7 @@ public class EditInsightCard extends AppCompatActivity {
         setContentView(R.layout.activity_edit_insight_card);
         EditText title = (EditText) findViewById(R.id.ic_textTitle);
         EditText des = (EditText) findViewById(R.id.ic_textDescription);
-
+        categories = new ArrayList<String>();
         Intent i = getIntent();
         if(i != null){
              Bundle extras = i.getExtras();
@@ -89,13 +91,13 @@ public class EditInsightCard extends AppCompatActivity {
                 p.cards.get(ic_id).setData(description);
             }
             saveProject();
-            Intent i = new Intent(this, EditInsightCard.class);
+            Intent i = new Intent(this, InsightCardActivity.class);
             i.putExtra("project", p.AsString());
             startActivity(i);
         }
         else{
             if(count == 1){
-                Intent i = new Intent(this, EditInsightCard.class);
+                Intent i = new Intent(this, InsightCardActivity.class);
                 i.putExtra("project", p.AsString());
                 startActivity(i);
             }
@@ -139,6 +141,7 @@ public class EditInsightCard extends AppCompatActivity {
         inflater.inflate(R.layout.tag, tagDisposal);
         ((TextView)(tagDisposal.getChildAt(tagDisposal.getChildCount()-1)).findViewById(R.id.tag_name)).setText(((EditText) findViewById(R.id.tag_text)).getText());
         ((EditText)findViewById(R.id.tag_text)).setText("");
+        categories.add(((EditText) findViewById(R.id.tag_text)).getText().toString());
     }
 
     public void saveProject(){

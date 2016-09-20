@@ -23,7 +23,7 @@ import java.util.ArrayList;
 import java.util.Map;
 
 public class ProjectActivity extends AppCompatActivity {
-    public String newName = "Deafult";
+    public String newName = "Default";
     public String newDescription;
     public static ArrayList<Project> projects;
     int num = 0;
@@ -45,19 +45,20 @@ public class ProjectActivity extends AppCompatActivity {
         sharedPref = this.getSharedPreferences("Projects", Context.MODE_PRIVATE);
         editor = sharedPref.edit();
         Map<String,?> keys = sharedPref.getAll();
-        editor.clear();editor.apply();
+        //editor.clear();editor.apply();
 
         Intent i = getIntent();
-        Log.d("ProjectActivity",keys.values().iterator().toString());
-        if(keys != null && false) {
+        Log.d("ProjectActivity",keys.size()+"piru");
+        if(keys.size() != 0) {
             for (Map.Entry<String, ?> entry : keys.entrySet()) {
                 Log.d("ProjectActivity",entry.getValue().toString());
-                Project proj = new Project(entry.getValue().toString());
-                projects.add(proj);
+                Project p = new Project(entry.getValue().toString());
+                if(!p.projectName.isEmpty() || !p.projectName.equals("null") )
+                projects.add(p);
             }
         }
 
-        if(i != null){
+        /*if(i != null){
                 Bundle extras = i.getExtras();
                 if(extras != null){
                 String name = extras.getString("projectname");
@@ -67,7 +68,7 @@ public class ProjectActivity extends AppCompatActivity {
                 editor.putString(p.projectName, p.AsString());
                 editor.apply();
             }
-        }
+        }*/
         addCardView();
     }
 
