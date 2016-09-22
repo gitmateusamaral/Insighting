@@ -27,15 +27,18 @@ public class Project {
         projectDescription = tk[1];
         projectName = tk[2];
         String ic_cards = tk[3];
-            String[] ic = ic_cards.split(";");
-            if(!ic_cards.equals(""))
-            for (String i : ic) {
-                cards.add(new InsightCard(i));
+            if(!ic_cards.contains(";") && false) {
+                String[] ic = ic_cards.split(";");
+                for (String i : ic) {
+                    cards.add(new InsightCard(i));
+                }
             }
-        /*String[] categories = info[].substring(0,info.length-2).split("#");
-        for(String c : categories){
-            categoriesList.add(c);
-        }*/
+        if(!tk[4].contains("ᔦ") && false) {
+            String[] categories = tk[4].substring(0, tk[4].length() - 2).split("ᔦ");
+            for (String c : categories) {
+                categoriesList.add(c);
+            }
+        }
     }
 
     public void addInsightCard(String title, String data){
@@ -51,7 +54,7 @@ public class Project {
         for(String c : categoriesList){
             cl += c+"ᔦ";
         }
-        return projectID +"|"+projectDescription+"|"+projectName+"|"+cl+"|"+ic;
+        return projectID +"|"+projectDescription+"|"+projectName+"|"+ic+ "|"+cl;
     }
 
     public ArrayList<InsightCard> findCardsWithCategory(String c){

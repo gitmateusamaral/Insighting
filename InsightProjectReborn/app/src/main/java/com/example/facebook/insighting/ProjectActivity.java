@@ -36,16 +36,13 @@ public class ProjectActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
-        Firebase.setAndroidContext(this);
-
         setContentView(R.layout.activity_main);
         projects = new ArrayList<Project>();
         sharedPref = this.getSharedPreferences("Projects", Context.MODE_PRIVATE);
         editor = sharedPref.edit();
         Map<String,?> keys = sharedPref.getAll();
-        //editor.clear();editor.apply();
+        editor = editor.clear();editor.apply();
 
         Intent i = getIntent();
         Log.d("ProjectActivity",keys.size()+"piru");
@@ -53,22 +50,24 @@ public class ProjectActivity extends AppCompatActivity {
             for (Map.Entry<String, ?> entry : keys.entrySet()) {
                 Log.d("ProjectActivity",entry.getValue().toString());
                 Project p = new Project(entry.getValue().toString());
+                p.categoriesList.add("all");
                 if(!p.projectName.isEmpty() || !p.projectName.equals("null") )
                 projects.add(p);
             }
         }
 
-        /*if(i != null){
+        if(i != null){
                 Bundle extras = i.getExtras();
                 if(extras != null){
                 String name = extras.getString("projectname");
                 String des = extras.getString("projectdescription");
                 Project p = new Project(name,"luca",des);
+                    p.categoriesList.add("all");
                 projects.add(p);
                 editor.putString(p.projectName, p.AsString());
                 editor.apply();
             }
-        }*/
+        }
         addCardView();
     }
 
@@ -106,28 +105,7 @@ public class ProjectActivity extends AppCompatActivity {
 
         for(int i = 0; i < projects.size();i++){
             inflater.inflate(R.layout.project_file, gridlayout);
-            final View cv = gridlayout.getChildAt(i);
-            cv.setOnTouchListener(new View.OnTouchListener() {
-                long start;
-                @Override
-                public boolean onTouch(View v, MotionEvent event) {
-                    if (event.getAction() == MotionEvent.ACTION_DOWN) {
-                        start = System.currentTimeMillis();
-                    }
-                    else if (event.getAction() == MotionEvent.ACTION_UP) {
-
-                        if( System.currentTimeMillis() - start >= 2000){
-                            ((ViewGroup) cv.getParent()).removeView(cv);
-                            Log.d("Released", "Button released :" + (System.currentTimeMillis() - start));
-                            SharedPreferences.Editor editor = getSharedPreferences("Projects", Context.MODE_PRIVATE).edit();
-                            TextView t = ((TextView)(cv.findViewById(R.id.project_name)));
-                            editor.remove( t.getText().toString() );
-                        }
-                    }
-                    // TODO Auto-generated method stub
-                    return false;
-                }
-            });
+            View cv = gridlayout.getChildAt(i);
             ((TextView)cv.findViewById(R.id.project_name)).setText(projects.get(i).projectName);
         }
     }
