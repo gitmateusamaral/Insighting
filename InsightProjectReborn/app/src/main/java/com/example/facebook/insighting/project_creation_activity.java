@@ -21,18 +21,21 @@ import android.widget.Toast;
 import java.util.ArrayList;
 
 public class project_creation_activity extends AppCompatActivity {
+    DatabaseController db;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.project_creation_layout);
+        db = new DatabaseController(getBaseContext());
     }
 
     public void sendDataToProjectActivity(View v){
         Intent i = new Intent(this,ProjectActivity.class);
         EditText pname = (EditText)findViewById(R.id.project_name);
         EditText pdes = (EditText)findViewById(R.id.project_description);
-        i.putExtra("projectname",pname.getText().toString());
-        i.putExtra("projectdescription",pdes.getText().toString());
+        String result = db.insertData(pname.getText().toString(),pdes.getText().toString());
+        Log.d("project_creation_activ",result);
         startActivity(i);
     }
 }

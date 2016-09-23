@@ -38,14 +38,11 @@ public class ProjectActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        DatabaseController db = new DatabaseController(getBaseContext());
+//        String result = db.insertData("ProjectTest","This is just a test");
         projects = new ArrayList<Project>();
-        sharedPref = this.getSharedPreferences("Projects", Context.MODE_PRIVATE);
-        editor = sharedPref.edit();
-        Map<String,?> keys = sharedPref.getAll();
-        editor = editor.clear();editor.apply();
 
-        Intent i = getIntent();
-        Log.d("ProjectActivity",keys.size()+"piru");
+      /*  Intent i = getIntent();
         if(keys.size() != 0) {
             for (Map.Entry<String, ?> entry : keys.entrySet()) {
                 Log.d("ProjectActivity",entry.getValue().toString());
@@ -67,7 +64,7 @@ public class ProjectActivity extends AppCompatActivity {
                 editor.putString(p.projectName, p.AsString());
                 editor.apply();
             }
-        }
+        }*/
         addCardView();
     }
 
@@ -127,6 +124,4 @@ public class ProjectActivity extends AppCompatActivity {
                 finishAffinity();
         }
     }
-
-
 }
