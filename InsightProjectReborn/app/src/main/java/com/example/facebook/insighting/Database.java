@@ -19,12 +19,12 @@ public class Database extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-            String createProjectSql = " CREATE TABLE IF NOT EXISTS"+tableProject+" (\n" +
+            String createProjectSql = " CREATE TABLE IF NOT EXISTS "+tableProject+" (\n" +
                     "                          id_project integer primary key autoincrement,\n" +
                     "                          name text,\n" +
                     "                          description text\n" +
                     "                          )";
-            String createInsightCardSql =  " CREATE TABLE IF NOT EXISTS" + tableInsight + " (\n" +
+            String createInsightCardSql =  " CREATE TABLE IF NOT EXISTS " + tableInsight + " (\n" +
                     "                          id_card integer primary key autoincrement,\n" +
                     "                          name text,\n" +
                     "                          description text,\n" +
@@ -38,8 +38,8 @@ public class Database extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        db.execSQL("DROP TABLE IF EXISTS" + tableInsight);
-        db.execSQL("DROP TABLE IF EXISTS" + tableProject);
+        db.execSQL("DROP TABLE IF EXISTS " + tableInsight);
+        db.execSQL("DROP TABLE IF EXISTS " + tableProject);
         onCreate(db);
     }
 

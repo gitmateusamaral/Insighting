@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.database.Cursor;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -27,8 +28,7 @@ public class ProjectActivity extends AppCompatActivity {
     public String newDescription;
     public static ArrayList<Project> projects;
     int num = 0;
-    SharedPreferences sharedPref;
-    SharedPreferences.Editor editor;
+    DatabaseController db;
     private ListView mDrawerList;
     private ArrayAdapter<String> mAdapter;
     //TextView cardName = (TextView) findViewById(R.id.card_name);
@@ -38,39 +38,19 @@ public class ProjectActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        DatabaseController db = new DatabaseController(getBaseContext());
-//        String result = db.insertData("ProjectTest","This is just a test");
+        db = new DatabaseController(getBaseContext());
         projects = new ArrayList<Project>();
+        Cursor c = db.readProjectData();
 
-      /*  Intent i = getIntent();
-        if(keys.size() != 0) {
-            for (Map.Entry<String, ?> entry : keys.entrySet()) {
-                Log.d("ProjectActivity",entry.getValue().toString());
-                Project p = new Project(entry.getValue().toString());
-                p.categoriesList.add("all");
-                if(!p.projectName.isEmpty() || !p.projectName.equals("null") )
-                projects.add(p);
-            }
+        c.moveToFirst();
+        while (c.isAfterLast() == false) {
+            projects.add(new Project(c.getString(0), c.getString(1), c.getString(2)));
+            c.moveToNext();
         }
-
-        if(i != null){
-                Bundle extras = i.getExtras();
-                if(extras != null){
-                String name = extras.getString("projectname");
-                String des = extras.getString("projectdescription");
-                Project p = new Project(name,"luca",des);
-                    p.categoriesList.add("all");
-                projects.add(p);
-                editor.putString(p.projectName, p.AsString());
-                editor.apply();
-            }
-        }*/
         addCardView();
     }
 
     public void showMenu(View v){
-        Firebase myFirebaseRef = new Firebase("https://insighting-aa229.firebaseio.com/");
-        myFirebaseRef.child("message").setValue("Do you have data? You'll love Firebase.");
         Toast.makeText(this, "Rada", Toast.LENGTH_SHORT).show();
     }
 
@@ -91,9 +71,9 @@ public class ProjectActivity extends AppCompatActivity {
 
     public void deleteProject(View v){
         ((ViewGroup)((ViewGroup)v.getParent()).getParent()).removeView(((ViewGroup) v.getParent()));
-        String pn = ((TextView)((ViewGroup)v.getParent()).findViewById(R.id.project_name)).getText().toString();
-        editor.remove(pn);
-        editor.apply();
+        int id = ((TextView)((ViewGroup)v.getParent()).findViewById(R.id.project_name)).getId();
+        db.deleteProjectData(id+"");
+        ((ViewGroup)v.getParent()).removeAllViews();
     }
 
     public void addCardView(){
@@ -103,6 +83,7 @@ public class ProjectActivity extends AppCompatActivity {
         for(int i = 0; i < projects.size();i++){
             inflater.inflate(R.layout.project_file, gridlayout);
             View cv = gridlayout.getChildAt(i);
+            cv.setId(Integer.parseInt(projects.get(i).projectID));
             ((TextView)cv.findViewById(R.id.project_name)).setText(projects.get(i).projectName);
         }
     }

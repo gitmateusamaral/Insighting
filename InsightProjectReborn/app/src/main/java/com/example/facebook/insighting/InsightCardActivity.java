@@ -27,7 +27,7 @@ public class InsightCardActivity extends AppCompatActivity {
         setContentView(R.layout.activity_insight_card);
         Bundle extras = getIntent().getExtras();
         if(extras != null) {
-            p = new Project(extras.getString("project"));
+            //p = new Project(extras.getString("project"));
             ((TextView) (findViewById(R.id.title_project))).setText(p.projectName);
         }
         addInsightCard();
@@ -48,8 +48,8 @@ public class InsightCardActivity extends AppCompatActivity {
     public void editCreateInsightCard(View v)
     {
         Intent i = new Intent(this, EditInsightCard.class);
-        i.putExtra("new",true);
-        i.putExtra("project", p.AsString());
+        //i.putExtra("new",true);
+        //i.putExtra("project", p.AsString());
         //i.putExtra("ic_id", p.cards.size());
         //Log.d("InsightCardActivity",p.AsString());
         startActivity(i);
@@ -63,13 +63,13 @@ public class InsightCardActivity extends AppCompatActivity {
 
     public void editInsightCard(View v){
         Intent i = new Intent(this, EditInsightCard.class);
-        i.putExtra("project", p.AsString());
-        i.putExtra("ic_id", p.cards.size() - 1);
+        //i.putExtra("project", p.AsString());
+        //i.putExtra("ic_id", p.cards.size() - 1);
         TextView t =(TextView)v.findViewById(R.id.card_name);
         if(p.cards.size() != 0) {
             for (int n = 0; n < p.cards.size(); n++) {
                 if (p.cards.get(n).title.equals(t.getText().toString())) {
-                    i.putExtra("ic_id", n);
+                   // i.putExtra("ic_id", n);
                     break;
                 }
             }

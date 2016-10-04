@@ -37,16 +37,22 @@ public class DatabaseController {
         }
     }
 
-    public String readData(){
+    public Cursor readProjectData(){
         Cursor cursor;
-        String[] campos =  {"name","description"};
+        String[] campos =  {"id_project","name","description"};
         db = myDatabase.getReadableDatabase();
         cursor = db.query(Database.tableProject, campos, null, null, null, null, null, null);
         if(cursor!=null){
             cursor.moveToFirst();
         }
         db.close();
-        return cursor.getString(0);
+        return cursor;
+    }
+
+    public void deleteProjectData(String id) {
+         db = myDatabase.getWritableDatabase();
+        //return db.delete(Database.tableProject,"id_project=?",new String[]{id});
+         db.execSQL("DELETE FROM Projects WHERE id_project = " + id);
     }
 
 }

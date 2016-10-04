@@ -31,12 +31,6 @@ public class InsightCard {
         date = getDate();
     }
 
-    public InsightCard (String i){
-        StringTokenizer r = new StringTokenizer(i," ");
-        title  = r.nextToken();
-        data = r.nextToken();
-        date = r.nextToken().replace(";","");
-    }
     public String getDate()
     {
         Calendar c = Calendar.getInstance();

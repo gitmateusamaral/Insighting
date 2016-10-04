@@ -35,7 +35,6 @@ public class project_creation_activity extends AppCompatActivity {
         EditText pname = (EditText)findViewById(R.id.project_name);
         EditText pdes = (EditText)findViewById(R.id.project_description);
         String result = db.insertData(pname.getText().toString(),pdes.getText().toString());
-        Log.d("project_creation_activ",result);
         startActivity(i);
     }
 }

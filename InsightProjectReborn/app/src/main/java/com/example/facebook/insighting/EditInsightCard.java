@@ -38,7 +38,7 @@ public class EditInsightCard extends AppCompatActivity {
         if(i != null){
              Bundle extras = i.getExtras();
             if(extras != null){
-                p = new Project(extras.getString("project"));
+                //p = new Project(extras.getString("project"));
                 Log.d("EditInsightCardActivity",extras.getString("project"));
                 ic_id = extras.getInt("ic_id");
                 if(!extras.getBoolean("new")) {
@@ -56,7 +56,7 @@ public class EditInsightCard extends AppCompatActivity {
         saveProject();
         Intent galleryIntent = new Intent(Intent.ACTION_PICK,
                 android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-        galleryIntent.putExtra("project",p.AsString());
+        //galleryIntent.putExtra("project",p.AsString());
         startActivityForResult(galleryIntent, RESULT_FIRST_USER);
     }
 
@@ -67,7 +67,7 @@ public class EditInsightCard extends AppCompatActivity {
         if(title.isEmpty() || description.isEmpty()){
             if(count == 1){
                 Intent i = new Intent(this, EditInsightCard.class);
-                i.putExtra("project", p.AsString());
+                //i.putExtra("project", p.AsString());
                 startActivity(i);
             }
             else{
@@ -92,13 +92,13 @@ public class EditInsightCard extends AppCompatActivity {
             }
             saveProject();
             Intent i = new Intent(this, InsightCardActivity.class);
-            i.putExtra("project", p.AsString());
+            //i.putExtra("project", p.AsString());
             startActivity(i);
         }
         else{
             if(count == 1){
                 Intent i = new Intent(this, InsightCardActivity.class);
-                i.putExtra("project", p.AsString());
+                //i.putExtra("project", p.AsString());
                 startActivity(i);
             }
             else{
@@ -125,7 +125,7 @@ public class EditInsightCard extends AppCompatActivity {
         else{
             if(count == 1){
                 Intent i = new Intent(this, EditInsightCard.class);
-                i.putExtra("project", p.AsString());
+                //i.putExtra("project", p.AsString());
                 startActivity(i);
             }
             else{
@@ -147,7 +147,7 @@ public class EditInsightCard extends AppCompatActivity {
     public void saveProject(){
         SharedPreferences sharedPref = this.getSharedPreferences("Projects", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPref.edit();
-        editor.putString(p.projectName,p.AsString());
+        //editor.putString(p.projectName,p.AsString());
         editor.apply();
     }
 }
