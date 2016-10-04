@@ -37,6 +37,53 @@ public class DatabaseController {
         }
     }
 
+    public String insertDataInsightCard( String name, String description, String url, String tags, String id_project) {
+        ContentValues valores;
+        long resultado;
+
+        db = myDatabase.getWritableDatabase();
+        valores = new ContentValues();
+        valores.put("name", name);
+        valores.put("description", description);
+        valores.put("url", url);
+        valores.put("tags", tags);
+        valores.put("id_project", id_project);
+
+        resultado = db.insert(Database.tableInsight, null, valores);
+        db.close();
+
+        if (resultado == -1){
+            return "Erro ao inserir registro";
+        }
+        else {
+            return "Registro Inserido com sucesso";
+        }
+    }
+
+    public Cursor getInsightCardFromId(String id){
+        Cursor cursor;
+        String[] campos =  {"name","description","url","id_card"};
+        db = myDatabase.getReadableDatabase();
+        cursor = db.query(Database.tableInsight, campos, "id_card='"+ id+"'", null, null, null, null, null);
+        return cursor;
+    }
+
+    public Cursor getInsightCardsFromProjects(String id){
+        Cursor cursor;
+        String[] campos =  {"name","url","id_card"};
+        db = myDatabase.getReadableDatabase();
+        cursor = db.query(Database.tableInsight, campos, "id_project='"+ id+"'", null, null, null, null, null);
+        return cursor;
+    }
+
+    public Cursor getSpecificProject(String id){
+        Cursor cursor;
+        String[] campos =  {"id_project","name","description"};
+        db = myDatabase.getReadableDatabase();
+        cursor = db.query(Database.tableProject, campos, "id_project='"+ id+"'", null, null, null, null, null);
+        return cursor;
+    }
+
     public Cursor readProjectData(){
         Cursor cursor;
         String[] campos =  {"id_project","name","description"};

@@ -1,5 +1,4 @@
 package com.example.facebook.insighting;
-
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -84,15 +83,15 @@ public class ProjectActivity extends AppCompatActivity {
             inflater.inflate(R.layout.project_file, gridlayout);
             View cv = gridlayout.getChildAt(i);
             cv.setId(Integer.parseInt(projects.get(i).projectID));
+            Log.e("MainActivity", cv.getId()+"");
             ((TextView)cv.findViewById(R.id.project_name)).setText(projects.get(i).projectName);
         }
     }
 
     public void enterProject(View v){
-        SharedPreferences sharedPref = this.getSharedPreferences("Projects", Context.MODE_PRIVATE);
         Intent i = new Intent(this,InsightCardActivity.class);
         TextView x = (TextView)(v.findViewById(R.id.project_name));
-        i.putExtra("project", sharedPref.getString(x.getText().toString(), ""));
+        i.putExtra("project", v.getId()+"");
         startActivity(i);
     }
 

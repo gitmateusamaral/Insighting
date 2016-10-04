@@ -3,6 +3,7 @@ package com.example.facebook.insighting;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.database.Cursor;
 import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -22,10 +23,11 @@ import java.util.Map;
 
 public class EditInsightCard extends AppCompatActivity {
 
-    public Project p;
-    public int ic_id;
+    public String ic_p;
+    public String ic_c;
     int count = 0;
     public ArrayList<String> categories;
+    DatabaseController db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,15 +37,21 @@ public class EditInsightCard extends AppCompatActivity {
         EditText des = (EditText) findViewById(R.id.ic_textDescription);
         categories = new ArrayList<String>();
         Intent i = getIntent();
+        db = new DatabaseController(getBaseContext());
         if(i != null){
              Bundle extras = i.getExtras();
             if(extras != null){
-                //p = new Project(extras.getString("project"));
-                Log.d("EditInsightCardActivity",extras.getString("project"));
-                ic_id = extras.getInt("ic_id");
+                ic_p = extras.getString("id_project");
+                ic_c = extras.getString("id_card");
                 if(!extras.getBoolean("new")) {
-                    title.setText(p.cards.get(ic_id).title);
-                    des.setText(p.cards.get(ic_id).data);
+                    Cursor c =  db.getInsightCardFromId(ic_c);
+                    c.moveToFirst();
+                    while (!c.isAfterLast()) {
+                        title.setText(c.getString(0));
+                        des.setText(c.getString(1));
+                        c.moveToNext();
+                    }
+                    c.close();
                 }
             }
         }
@@ -53,7 +61,6 @@ public class EditInsightCard extends AppCompatActivity {
     }
 
     public void addImage(View v){
-        saveProject();
         Intent galleryIntent = new Intent(Intent.ACTION_PICK,
                 android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
         //galleryIntent.putExtra("project",p.AsString());
@@ -67,7 +74,9 @@ public class EditInsightCard extends AppCompatActivity {
         if(title.isEmpty() || description.isEmpty()){
             if(count == 1){
                 Intent i = new Intent(this, EditInsightCard.class);
-                //i.putExtra("project", p.AsString());
+                i.putExtra("project",ic_p);
+                String r = db.insertDataInsightCard(title, description, "#url", "#tags", ic_p);
+                Toast.makeText(this, r ,Toast.LENGTH_LONG).show();
                 startActivity(i);
             }
             else{
@@ -84,13 +93,14 @@ public class EditInsightCard extends AppCompatActivity {
 
         if((!title.isEmpty() || !description.isEmpty())) {
             if(getIntent().getExtras().getBoolean("new")){
-                p.addInsightCard(title,description);
+                Intent i = new Intent(this, EditInsightCard.class);
+                i.putExtra("project",ic_p);
+                String r = db.insertDataInsightCard(title, description, "#url", "#tags", ic_p);
+                Toast.makeText(this, r ,Toast.LENGTH_LONG).show();
+                startActivity(i);
             }
             else{
-                p.cards.get(ic_id).setTitle(title);
-                p.cards.get(ic_id).setData(description);
             }
-            saveProject();
             Intent i = new Intent(this, InsightCardActivity.class);
             //i.putExtra("project", p.AsString());
             startActivity(i);
@@ -115,11 +125,8 @@ public class EditInsightCard extends AppCompatActivity {
 
         if((!title.isEmpty() || !description.isEmpty())) {
             if(getIntent().getExtras().getBoolean("new")){
-                p.addInsightCard(title,description);
             }
             else{
-                p.cards.get(ic_id).setTitle(title);
-                p.cards.get(ic_id).setData(description);
             }
         }
         else{
@@ -142,12 +149,5 @@ public class EditInsightCard extends AppCompatActivity {
         ((TextView)(tagDisposal.getChildAt(tagDisposal.getChildCount()-1)).findViewById(R.id.tag_name)).setText(((EditText) findViewById(R.id.tag_text)).getText());
         ((EditText)findViewById(R.id.tag_text)).setText("");
         categories.add(((EditText) findViewById(R.id.tag_text)).getText().toString());
-    }
-
-    public void saveProject(){
-        SharedPreferences sharedPref = this.getSharedPreferences("Projects", Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPref.edit();
-        //editor.putString(p.projectName,p.AsString());
-        editor.apply();
     }
 }
