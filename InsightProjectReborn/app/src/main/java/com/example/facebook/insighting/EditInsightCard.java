@@ -4,7 +4,10 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
+import android.graphics.BitmapFactory;
 import android.graphics.Typeface;
+import android.net.Uri;
+import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Layout;
@@ -16,6 +19,7 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.GridLayout;
 import android.widget.GridView;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -72,8 +76,20 @@ public class EditInsightCard extends AppCompatActivity {
     public void addImage(View v){
         Intent galleryIntent = new Intent(Intent.ACTION_PICK,
                 android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-        //galleryIntent.putExtra("project",p.AsString());
+// Start the Intent
         startActivityForResult(galleryIntent, RESULT_FIRST_USER);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == RESULT_FIRST_USER && resultCode == RESULT_OK && null != data) {
+            Uri selectedImage = data.getData();
+            Log.v("ImageLog",selectedImage.toString());
+            ImageView imageView = (ImageView) findViewById(R.id.card_img);
+            imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
+            imageView.setImageURI(selectedImage);
+        }
     }
 
     public void exitInsightCard(View v){

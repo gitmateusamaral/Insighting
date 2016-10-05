@@ -129,10 +129,10 @@
         </RelativeLayout>
         <ImageView
             android:layout_width="fill_parent"
-            android:layout_height="100dp"
+            android:layout_height="fill_parent"
+            android:id="@+id/card_img"
             android:onClick="addImage"
-            android:background="@drawable/galeria"
-
+            android:src="@drawable/galeria"
             />
         </LinearLayout>
 </RelativeLayout>
