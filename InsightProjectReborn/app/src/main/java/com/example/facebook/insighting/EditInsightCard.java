@@ -8,6 +8,7 @@ import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Layout;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,12 +20,14 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Map;
 
 public class EditInsightCard extends AppCompatActivity {
 
     public String ic_p;
     public String ic_c;
+    boolean isNew;
     int count = 0;
     public ArrayList<String> categories;
     DatabaseController db;
@@ -43,15 +46,21 @@ public class EditInsightCard extends AppCompatActivity {
             if(extras != null){
                 ic_p = extras.getString("id_project");
                 ic_c = extras.getString("id_card");
-                if(!extras.getBoolean("new")) {
+                isNew = extras.getBoolean("new");
+                if(!isNew) {
                     Cursor c =  db.getInsightCardFromId(ic_c);
                     c.moveToFirst();
+                    ArrayList<String> catList = new ArrayList<String>();
                     while (!c.isAfterLast()) {
-                        title.setText(c.getString(0));
-                        des.setText(c.getString(1));
+                        title.setText(c.getString(c.getColumnIndex("name")));
+                        des.setText(c.getString(c.getColumnIndex("description")));
+                        catList = new ArrayList<String>(Arrays.asList(c.getString(c.getColumnIndex("tags")).split(";")));
                         c.moveToNext();
                     }
                     c.close();
+                    for (String cat:catList ) {
+                        addTagView(cat);
+                    }
                 }
             }
         }
@@ -70,84 +79,61 @@ public class EditInsightCard extends AppCompatActivity {
     public void exitInsightCard(View v){
         String title = ((EditText)findViewById(R.id.ic_textTitle)).getText().toString();
         String description = ((EditText)findViewById(R.id.ic_textDescription)).getText().toString();
-
-        if(title.isEmpty() || description.isEmpty()){
-            if(count == 1){
-                Intent i = new Intent(this, EditInsightCard.class);
-                i.putExtra("project",ic_p);
-                String r = db.insertDataInsightCard(title, description, "#url", "#tags", ic_p);
-                Toast.makeText(this, r ,Toast.LENGTH_LONG).show();
-                startActivity(i);
-            }
-            else{
-                Toast.makeText(this, "Title or description are empty. Press again to delete Insight Card.", Toast.LENGTH_SHORT).show();
-            }
-            count ++;
-        }
+        Intent i = new Intent(this, EditInsightCard.class);
+        Toast.makeText(this, "Cancelled Insight Card", Toast.LENGTH_LONG).show();
+        startActivity(i);
     }
 
-    public void onBackPressed()
-    {
-        String title = ((EditText)findViewById(R.id.ic_textTitle)).getText().toString();
-        String description = ((EditText)findViewById(R.id.ic_textDescription)).getText().toString();
-
-        if((!title.isEmpty() || !description.isEmpty())) {
-            if(getIntent().getExtras().getBoolean("new")){
-                Intent i = new Intent(this, EditInsightCard.class);
-                i.putExtra("project",ic_p);
-                String r = db.insertDataInsightCard(title, description, "#url", "#tags", ic_p);
-                Toast.makeText(this, r ,Toast.LENGTH_LONG).show();
-                startActivity(i);
-            }
-            else{
-            }
-            Intent i = new Intent(this, InsightCardActivity.class);
-            //i.putExtra("project", p.AsString());
-            startActivity(i);
-        }
-        else{
-            if(count == 1){
-                Intent i = new Intent(this, InsightCardActivity.class);
-                //i.putExtra("project", p.AsString());
-                startActivity(i);
-            }
-            else{
-                Toast.makeText(this,"Title or description are empty. Press again to delete Insight Card.",Toast.LENGTH_SHORT).show();
-            }
-            count ++;
-        }
+    public void onBackPressed() {
+        String title = ((EditText) findViewById(R.id.ic_textTitle)).getText().toString();
+        String description = ((EditText) findViewById(R.id.ic_textDescription)).getText().toString();
+        handlerUpdate(title,description);
     }
+
 
     public void onPause(){
         super.onPause();
-        String title = ((EditText)findViewById(R.id.ic_textTitle)).getText().toString();
-        String description = ((EditText)findViewById(R.id.ic_textDescription)).getText().toString();
+    }
 
-        if((!title.isEmpty() || !description.isEmpty())) {
-            if(getIntent().getExtras().getBoolean("new")){
-            }
-            else{
-            }
-        }
-        else{
-            if(count == 1){
-                Intent i = new Intent(this, EditInsightCard.class);
-                //i.putExtra("project", p.AsString());
+    public void handlerUpdate(String title, String description){
+        if ((!title.isEmpty() || !description.isEmpty())) {
+            if (isNew) {
+                Intent i = new Intent(this, InsightCardActivity.class);
+                i.putExtra("project", ic_p);
+                String cat_s = TextUtils.join(";",categories);
+                String r = db.insertDataInsightCard(title, description, "#url", cat_s, ic_p);
+                Toast.makeText(this, "Insight Card created", Toast.LENGTH_LONG).show();
+                startActivity(i);
+            } else {
+                Intent i = new Intent(this, InsightCardActivity.class);
+                i.putExtra("project", ic_p);
+                String cat_s = TextUtils.join(";",categories);
+                String r = db.updateInsightCard(title,description,cat_s,"#url",ic_c);
+                Toast.makeText(this, "Insight Card saved", Toast.LENGTH_LONG).show();
                 startActivity(i);
             }
-            else{
-                Toast.makeText(this,"Title or description are empty. Press again to delete Insight Card.",Toast.LENGTH_SHORT).show();
+        } else {
+            if (count == 1) {
+                Intent i = new Intent(this, InsightCardActivity.class);
+                i.putExtra("project",ic_p);
+                startActivity(i);
+            }else {
+                count++;
+                Toast.makeText(this, "Title or description are empty. Press again to delete Insight Card.", Toast.LENGTH_SHORT).show();
             }
-            count ++;
         }
     }
 
     public void createTag(View v){
+        addTagView(((EditText) findViewById(R.id.tag_text)).getText().toString());
+        categories.add(((EditText) findViewById(R.id.tag_text)).getText().toString());
+        ((EditText)findViewById(R.id.tag_text)).setText("");
+    }
+    public void addTagView(String text){
         GridLayout tagDisposal = (GridLayout)findViewById(R.id.tag_disposal);
         LayoutInflater inflater = (LayoutInflater) this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         inflater.inflate(R.layout.tag, tagDisposal);
-        ((TextView)(tagDisposal.getChildAt(tagDisposal.getChildCount()-1)).findViewById(R.id.tag_name)).setText(((EditText) findViewById(R.id.tag_text)).getText());
-        ((EditText)findViewById(R.id.tag_text)).setText("");
-        categories.add(((EditText) findViewById(R.id.tag_text)).getText().toString());
+        ((TextView)(tagDisposal.getChildAt(tagDisposal.getChildCount()-1)).findViewById(R.id.tag_name)).setText(text);
     }
+
 }

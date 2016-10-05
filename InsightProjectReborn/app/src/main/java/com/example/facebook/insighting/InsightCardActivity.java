@@ -40,8 +40,8 @@ public class InsightCardActivity extends AppCompatActivity {
                 b.setText( c.getString(1));
             }
             c.close();
+            addInsightCard();
         }
-        addInsightCard();
     }
 
     public void addInsightCard(){
@@ -52,7 +52,7 @@ public class InsightCardActivity extends AppCompatActivity {
         while (!c.isAfterLast()) {
                 inflater.inflate(R.layout.cardview, gridlayout);
                 View cv = gridlayout.getChildAt(gridlayout.getChildCount()-1);
-                Log.d("MainActivity",c.getCount()+"rada");
+                Log.d("MainActivity",c.getString(0)+"rada");
                 cv.setId(Integer.parseInt(c.getString(c.getColumnIndex("id_card"))));
                 ((TextView) cv.findViewById(R.id.card_name)).setText(c.getString(0));
                 c.moveToNext();
@@ -64,7 +64,7 @@ public class InsightCardActivity extends AppCompatActivity {
         Intent i = new Intent(this, EditInsightCard.class);
         i.putExtra("new",true);
         i.putExtra("id_project",id_project);
-        i.putExtra("id_card", v.getId());
+        i.putExtra("id_card", v.getId()+"");
         //i.putExtra("project", p.AsString());
         //i.putExtra("ic_id", p.cards.size());
         //Log.d("InsightCardActivity",p.AsString());

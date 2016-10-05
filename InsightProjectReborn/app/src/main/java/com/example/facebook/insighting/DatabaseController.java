@@ -62,7 +62,7 @@ public class DatabaseController {
 
     public Cursor getInsightCardFromId(String id){
         Cursor cursor;
-        String[] campos =  {"name","description","url","id_card"};
+        String[] campos =  {"name","description","tags","url","id_card"};
         db = myDatabase.getReadableDatabase();
         cursor = db.query(Database.tableInsight, campos, "id_card='"+ id+"'", null, null, null, null, null);
         return cursor;
@@ -70,10 +70,25 @@ public class DatabaseController {
 
     public Cursor getInsightCardsFromProjects(String id){
         Cursor cursor;
-        String[] campos =  {"name","url","id_card"};
+        String[] campos =  {"name","url","id_card","tags"};
         db = myDatabase.getReadableDatabase();
         cursor = db.query(Database.tableInsight, campos, "id_project='"+ id+"'", null, null, null, null, null);
         return cursor;
+    }
+
+    public String updateInsightCard(String title, String description, String tags, String url, String id_card){
+        ContentValues cv = new ContentValues();
+        cv.put("name",title);
+        cv.put("description",description);
+        cv.put("url",url);
+        cv.put("tags",tags);
+        Integer result = db.update(Database.tableInsight, cv, "id_card="+id_card, null);
+        if (result == -1){
+            return "Erro ao inserir registro";
+        }
+        else {
+            return "Registro Inserido com sucesso";
+        }
     }
 
     public Cursor getSpecificProject(String id){
