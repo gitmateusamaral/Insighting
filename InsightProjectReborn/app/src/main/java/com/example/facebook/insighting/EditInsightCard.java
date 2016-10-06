@@ -35,6 +35,7 @@ public class EditInsightCard extends AppCompatActivity {
     int count = 0;
     public ArrayList<String> categories;
     DatabaseController db;
+    String actualImg = "#url";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,10 +60,19 @@ public class EditInsightCard extends AppCompatActivity {
                         title.setText(c.getString(c.getColumnIndex("name")));
                         des.setText(c.getString(c.getColumnIndex("description")));
                         catList = new ArrayList<String>(Arrays.asList(c.getString(c.getColumnIndex("tags")).split(";")));
+                        //Load Image
+                        if(!c.getString(c.getColumnIndex("url")).equals("#url")){
+                            Uri selectedImage = Uri.parse(c.getString(c.getColumnIndex("url")));
+                            ImageView imageView = (ImageView) findViewById(R.id.card_img);
+                            imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
+                            imageView.setImageURI(selectedImage);
+                        }
                         c.moveToNext();
                     }
                     c.close();
                     for (String cat:catList ) {
+                        Log.d("Categories_List",cat);
+                        if(!cat.isEmpty())
                         addTagView(cat);
                     }
                 }
@@ -89,12 +99,11 @@ public class EditInsightCard extends AppCompatActivity {
             ImageView imageView = (ImageView) findViewById(R.id.card_img);
             imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
             imageView.setImageURI(selectedImage);
+            actualImg = selectedImage.toString();
         }
     }
 
     public void exitInsightCard(View v){
-        String title = ((EditText)findViewById(R.id.ic_textTitle)).getText().toString();
-        String description = ((EditText)findViewById(R.id.ic_textDescription)).getText().toString();
         Intent i = new Intent(this, EditInsightCard.class);
         Toast.makeText(this, "Cancelled Insight Card", Toast.LENGTH_LONG).show();
         startActivity(i);
@@ -117,14 +126,14 @@ public class EditInsightCard extends AppCompatActivity {
                 Intent i = new Intent(this, InsightCardActivity.class);
                 i.putExtra("project", ic_p);
                 String cat_s = TextUtils.join(";",categories);
-                String r = db.insertDataInsightCard(title, description, "#url", cat_s, ic_p);
+                db.insertDataInsightCard(title, description, actualImg, cat_s, ic_p);
                 Toast.makeText(this, "Insight Card created", Toast.LENGTH_LONG).show();
                 startActivity(i);
             } else {
                 Intent i = new Intent(this, InsightCardActivity.class);
                 i.putExtra("project", ic_p);
                 String cat_s = TextUtils.join(";",categories);
-                String r = db.updateInsightCard(title,description,cat_s,"#url",ic_c);
+                db.updateInsightCard(title,description,cat_s,actualImg,ic_c);
                 Toast.makeText(this, "Insight Card saved", Toast.LENGTH_LONG).show();
                 startActivity(i);
             }
@@ -140,10 +149,19 @@ public class EditInsightCard extends AppCompatActivity {
         }
     }
 
+    public void deleteTag(View v){
+        ViewGroup vg = (ViewGroup) v.getParent();
+        TextView t = (TextView)vg.findViewById(R.id.tag_name);
+        categories.remove(t.getText().toString());
+        vg.removeAllViews();
+    }
+
     public void createTag(View v){
-        addTagView(((EditText) findViewById(R.id.tag_text)).getText().toString());
-        categories.add(((EditText) findViewById(R.id.tag_text)).getText().toString());
-        ((EditText)findViewById(R.id.tag_text)).setText("");
+        if(!((EditText) findViewById(R.id.tag_text)).getText().toString().isEmpty()) {
+            addTagView(((EditText) findViewById(R.id.tag_text)).getText().toString());
+            categories.add(((EditText) findViewById(R.id.tag_text)).getText().toString());
+            ((EditText) findViewById(R.id.tag_text)).setText("");
+        }
     }
     public void addTagView(String text){
         GridLayout tagDisposal = (GridLayout)findViewById(R.id.tag_disposal);

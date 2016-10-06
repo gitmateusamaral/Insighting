@@ -48,14 +48,16 @@
         android:layout_below="@+id/imageView2"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="fill_parent"
-        android:layout_below="@id/button"
+        android:layout_below="@id/button">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:background="#fff"
         android:orientation="vertical"
         android:scrollbars="vertical">
-
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -129,10 +131,12 @@
         </RelativeLayout>
         <ImageView
             android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
+            android:layout_height="250dp"
             android:id="@+id/card_img"
             android:onClick="addImage"
             android:src="@drawable/galeria"
-            />
+            android:scaleType="centerInside"
+            android:background="#000"/>
         </LinearLayout>
+    </ScrollView>
 </RelativeLayout>

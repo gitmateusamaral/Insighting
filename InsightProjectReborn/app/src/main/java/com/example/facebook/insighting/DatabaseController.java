@@ -112,9 +112,11 @@ public class DatabaseController {
     }
 
     public void deleteProjectData(String id) {
-         db = myDatabase.getWritableDatabase();
-        //return db.delete(Database.tableProject,"id_project=?",new String[]{id});
-         db.execSQL("DELETE FROM Projects WHERE id_project = " + id);
+        Log.v("DeleteRow",id);
+        db = myDatabase.getWritableDatabase();
+        db.delete(Database.tableProject,"id_project=?",new String[]{id});
+        db.delete(Database.tableInsight,"id_project=?",new String[]{id});
+        db.close();
     }
 
 }

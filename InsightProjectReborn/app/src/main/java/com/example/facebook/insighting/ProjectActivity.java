@@ -60,7 +60,6 @@ public class ProjectActivity extends AppCompatActivity {
 
     public void showOptions(View v){
         View deleteButton = ((View)v.getParent()).findViewById(R.id.deleteButton);
-        //deleteButton.
         if(deleteButton.getVisibility() == View.VISIBLE){
             deleteButton.setVisibility(View.GONE);
         }else{
@@ -70,7 +69,7 @@ public class ProjectActivity extends AppCompatActivity {
 
     public void deleteProject(View v){
         ((ViewGroup)((ViewGroup)v.getParent()).getParent()).removeView(((ViewGroup) v.getParent()));
-        int id = ((TextView)((ViewGroup)v.getParent()).findViewById(R.id.project_name)).getId();
+        int id = (((ViewGroup)v.getParent())).getId();
         db.deleteProjectData(id+"");
         ((ViewGroup)v.getParent()).removeAllViews();
     }

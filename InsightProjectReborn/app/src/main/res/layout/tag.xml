@@ -12,6 +12,7 @@
         android:layout_height="15dp"
         android:layout_gravity="center_vertical"
         android:src="@drawable/ximage"
+        android:onClick="deleteTag"
         android:layout_marginLeft="5dp"/>
 
     <TextView
