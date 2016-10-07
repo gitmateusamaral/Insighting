@@ -4,6 +4,7 @@ import android.*;
 import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
@@ -12,6 +13,7 @@ import android.graphics.Color;
 import android.graphics.ColorFilter;
 import android.graphics.PorterDuff;
 import android.net.Uri;
+import android.os.Build;
 import android.provider.MediaStore;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
@@ -56,26 +58,59 @@ public class InsightCardActivity extends AppCompatActivity {
                 b.setText(c.getString(1));
             }
             c.close();
+        }
+
+        SharedPreferences sp = this.getSharedPreferences("config",MODE_PRIVATE);
+        SharedPreferences.Editor ed = sp.edit();
+
+        Boolean ft = sp.getBoolean("firstTime",true);
+        if(Build.VERSION.SDK_INT >= 23) {
+            if(ft){
+                requestPermissions(new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, 1);
+            }
+            else if( checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED){
+                requestPermissions(new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, 1);
+            }
+            else {
+                addInsightCard();
+            }
+                ed.putBoolean("firstTime",false);
+                ed.apply();
+        }else{
             addInsightCard();
         }
     }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if(grantResults[0]== PackageManager.PERMISSION_GRANTED && requestCode == 2){
+            addInsightCard();
+        }
+    }
+
+
     public void addInsightCard(){
         LayoutInflater inflater = (LayoutInflater) this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         ViewGroup gridlayout = (ViewGroup) findViewById(R.id.grid);
         Cursor c = db.getInsightCardsFromProjects(id_project);
         c.moveToFirst();
+
         while (!c.isAfterLast()) {
             inflater.inflate(R.layout.cardview, gridlayout);
             View cv = gridlayout.getChildAt(gridlayout.getChildCount() - 1);
             Log.d("MainActivity", c.getString(0) + "rada");
             cv.setId(Integer.parseInt(c.getString(c.getColumnIndex("id_card"))));
             ((TextView)cv.findViewById(R.id.card_name)).setText(c.getString(0));
+
             if (!c.getString(c.getColumnIndex("url")).isEmpty() && !c.getString(c.getColumnIndex("url")).equals("#url")) {
                 Uri r = Uri.parse(c.getString(c.getColumnIndex("url")));
                 ImageView img = (ImageView) cv.findViewById(R.id.card_photo);
                 img.setScaleType(ImageView.ScaleType.CENTER_CROP);
+                Log.d("TESTE", r.getPath());
                 img.setImageURI(r);
             }
+
             c.moveToNext();
         }
     }

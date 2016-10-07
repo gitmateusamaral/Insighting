@@ -1,9 +1,11 @@
 package com.example.facebook.insighting;
 
+import android.content.ContentProvider;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
+import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Typeface;
 import android.net.Uri;
@@ -18,11 +20,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.GridLayout;
-import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.File;
+import java.io.InputStream;
+import java.net.URI;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Map;
@@ -61,6 +66,7 @@ public class EditInsightCard extends AppCompatActivity {
                         des.setText(c.getString(c.getColumnIndex("description")));
                         catList = new ArrayList<String>(Arrays.asList(c.getString(c.getColumnIndex("tags")).split(";")));
                         //Load Image
+                        actualImg = c.getString(c.getColumnIndex("url"));
                         if(!c.getString(c.getColumnIndex("url")).equals("#url")){
                             Uri selectedImage = Uri.parse(c.getString(c.getColumnIndex("url")));
                             ImageView imageView = (ImageView) findViewById(R.id.card_img);
@@ -90,21 +96,34 @@ public class EditInsightCard extends AppCompatActivity {
         startActivityForResult(galleryIntent, RESULT_FIRST_USER);
     }
 
+    public String getRealPathFromURI (Uri contentUri) {
+        String path = null;
+        String[] proj = { MediaStore.MediaColumns.DATA };
+        Cursor cursor = getContentResolver().query(contentUri, proj, null, null, null);
+        if (cursor.moveToFirst()) {
+            int column_index = cursor.getColumnIndexOrThrow(MediaStore.MediaColumns.DATA);
+            path = cursor.getString(column_index);
+        }
+        cursor.close();
+        return path;
+    }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == RESULT_FIRST_USER && resultCode == RESULT_OK && null != data) {
-            Uri selectedImage = data.getData();
-            Log.v("ImageLog",selectedImage.toString());
+            Uri path = (data.getData());
             ImageView imageView = (ImageView) findViewById(R.id.card_img);
             imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
-            imageView.setImageURI(selectedImage);
-            actualImg = selectedImage.toString();
+            Log.d("TESTE#", data.getDataString());
+            imageView.setImageURI(Uri.parse(data.getDataString()));
+            actualImg = data.getDataString();
         }
     }
 
     public void exitInsightCard(View v){
-        Intent i = new Intent(this, EditInsightCard.class);
+        Intent i = new Intent(this, InsightCardActivity.class);
+        i.putExtra("project",ic_p+"");
         Toast.makeText(this, "Cancelled Insight Card", Toast.LENGTH_LONG).show();
         startActivity(i);
     }
