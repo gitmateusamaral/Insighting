@@ -34,7 +34,7 @@
         android:layout_marginTop="0dp"
         android:layout_alignParentRight="true"
         android:onClick="exitInsightCard"
-        android:background="@android:drawable/ic_menu_close_clear_cancel"
+        android:background="@drawable/tick"
         />
 
     <Button
@@ -118,16 +118,22 @@
                 android:src="@android:drawable/ic_menu_send"
                 android:layout_toRightOf="@id/tag_text"
                 />
-            <GridLayout
-                android:id="@+id/tag_disposal"
-                android:layout_below="@id/confirmButton"
+            <ScrollView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:columnCount="2"
+                android:scrollbars="horizontal"
+                android:layout_below="@id/confirmButton">
+            <GridLayout
+                android:clipChildren="true"
+                android:id="@+id/tag_disposal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:columnCount="3"
                 android:rowCount="3"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="15dp"
                 android:layout_marginRight="10dp" />
+            </ScrollView>
         </RelativeLayout>
         <ImageView
             android:layout_width="fill_parent"

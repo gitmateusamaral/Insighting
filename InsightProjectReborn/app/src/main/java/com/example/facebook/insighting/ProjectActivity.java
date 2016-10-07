@@ -96,11 +96,6 @@ public class ProjectActivity extends AppCompatActivity {
 
     public void onBackPressed()
     {
-        if(num == 0) {
-            Toast.makeText(this, "Press again to close", Toast.LENGTH_LONG).show();
-            num++;
-        }else{
-                finishAffinity();
-        }
+        finishAffinity();
     }
 }

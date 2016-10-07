@@ -26,11 +26,14 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import java.net.URI;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
@@ -89,6 +92,17 @@ public class InsightCardActivity extends AppCompatActivity {
         }
     }
 
+    public void addTagToView(View v,String text){
+        Log.d("TAGTEXT", text);
+
+        LayoutInflater inflater = (LayoutInflater) this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        ArrayList<String> catList = new ArrayList<String>(Arrays.asList(text.split(" ")));
+        TextView ll = (TextView) v.findViewById(R.id.card_description);
+
+        for (String tt:catList) {
+            ll.setText(ll.getText().toString()+tt+" ");
+        }
+    }
 
     public void addInsightCard(){
         LayoutInflater inflater = (LayoutInflater) this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -99,16 +113,19 @@ public class InsightCardActivity extends AppCompatActivity {
         while (!c.isAfterLast()) {
             inflater.inflate(R.layout.cardview, gridlayout);
             View cv = gridlayout.getChildAt(gridlayout.getChildCount() - 1);
-            Log.d("MainActivity", c.getString(0) + "rada");
             cv.setId(Integer.parseInt(c.getString(c.getColumnIndex("id_card"))));
             ((TextView)cv.findViewById(R.id.card_name)).setText(c.getString(0));
+            //TextView rada = (TextView)cv.findViewById(R.id.card_description);
 
             if (!c.getString(c.getColumnIndex("url")).isEmpty() && !c.getString(c.getColumnIndex("url")).equals("#url")) {
                 Uri r = Uri.parse(c.getString(c.getColumnIndex("url")));
                 ImageView img = (ImageView) cv.findViewById(R.id.card_photo);
                 img.setScaleType(ImageView.ScaleType.CENTER_CROP);
-                Log.d("TESTE", r.getPath());
                 img.setImageURI(r);
+                img.setColorFilter(Color.argb(50,0,0,0));
+                Log.d("TAGTEXT", c.getString(3));
+                if(!c.getString(3).isEmpty())
+                addTagToView(cv.findViewById(R.id.card_description),c.getString(3));
             }
 
             c.moveToNext();

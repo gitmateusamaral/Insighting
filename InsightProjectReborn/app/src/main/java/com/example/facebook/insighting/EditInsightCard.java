@@ -23,7 +23,6 @@ import android.widget.GridLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import java.io.File;
 import java.io.InputStream;
 import java.net.URI;
@@ -64,7 +63,7 @@ public class EditInsightCard extends AppCompatActivity {
                     while (!c.isAfterLast()) {
                         title.setText(c.getString(c.getColumnIndex("name")));
                         des.setText(c.getString(c.getColumnIndex("description")));
-                        catList = new ArrayList<String>(Arrays.asList(c.getString(c.getColumnIndex("tags")).split(";")));
+                        catList = new ArrayList<String>(Arrays.asList(c.getString(c.getColumnIndex("tags")).split(" ")));
                         //Load Image
                         actualImg = c.getString(c.getColumnIndex("url"));
                         if(!c.getString(c.getColumnIndex("url")).equals("#url")){
@@ -78,8 +77,10 @@ public class EditInsightCard extends AppCompatActivity {
                     c.close();
                     for (String cat:catList ) {
                         Log.d("Categories_List",cat);
-                        if(!cat.isEmpty())
-                        addTagView(cat);
+                        if(!cat.isEmpty()) {
+                            addTagView(cat);
+                            categories.add(cat);
+                        }
                     }
                 }
             }
@@ -122,18 +123,17 @@ public class EditInsightCard extends AppCompatActivity {
     }
 
     public void exitInsightCard(View v){
-        Intent i = new Intent(this, InsightCardActivity.class);
-        i.putExtra("project",ic_p+"");
-        Toast.makeText(this, "Cancelled Insight Card", Toast.LENGTH_LONG).show();
-        startActivity(i);
-    }
-
-    public void onBackPressed() {
         String title = ((EditText) findViewById(R.id.ic_textTitle)).getText().toString();
         String description = ((EditText) findViewById(R.id.ic_textDescription)).getText().toString();
         handlerUpdate(title,description);
     }
 
+    public void onBackPressed() {
+        Intent i = new Intent(this, InsightCardActivity.class);
+        i.putExtra("project",ic_p+"");
+        Toast.makeText(this, "Cancelled Insight Card", Toast.LENGTH_LONG).show();
+        startActivity(i);
+    }
 
     public void onPause(){
         super.onPause();
@@ -144,14 +144,14 @@ public class EditInsightCard extends AppCompatActivity {
             if (isNew) {
                 Intent i = new Intent(this, InsightCardActivity.class);
                 i.putExtra("project", ic_p);
-                String cat_s = TextUtils.join(";",categories);
+                String cat_s = TextUtils.join(" ",categories);
                 db.insertDataInsightCard(title, description, actualImg, cat_s, ic_p);
                 Toast.makeText(this, "Insight Card created", Toast.LENGTH_LONG).show();
                 startActivity(i);
             } else {
                 Intent i = new Intent(this, InsightCardActivity.class);
                 i.putExtra("project", ic_p);
-                String cat_s = TextUtils.join(";",categories);
+                String cat_s = TextUtils.join(" ",categories);
                 db.updateInsightCard(title,description,cat_s,actualImg,ic_c);
                 Toast.makeText(this, "Insight Card saved", Toast.LENGTH_LONG).show();
                 startActivity(i);
