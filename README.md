@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="http://www.insighting.xyz/" target="_blank">
+  <a href="http://main.insighting.xyz/" target="_blank">
     <img src="http://i.imgur.com/7E73CgZ.png"/>
   </a>
 </p>
