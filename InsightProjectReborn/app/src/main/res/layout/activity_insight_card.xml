@@ -51,7 +51,7 @@
     android:layout_below="@+id/imageView2"
     android:layout_alignParentLeft="true"
     android:layout_alignParentStart="true" />
-
+    
 <ScrollView
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -77,7 +77,8 @@
     android:layout_height="wrap_content"
     android:id="@+id/overlay"
     android:layout_centerInParent="true"
-    android:foregroundGravity="center">
+    android:foregroundGravity="center"
+    android:layout_alignTop="@+id/title_project">
 </RelativeLayout>
 
 </RelativeLayout>

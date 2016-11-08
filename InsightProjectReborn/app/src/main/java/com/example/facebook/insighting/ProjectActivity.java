@@ -88,7 +88,7 @@ public class ProjectActivity extends AppCompatActivity {
     }
 
     public void enterProject(View v){
-        Intent i = new Intent(this,InsightCardActivity.class);
+        Intent i = new Intent(this,IC.class);
         TextView x = (TextView)(v.findViewById(R.id.project_name));
         i.putExtra("project", v.getId()+"");
         startActivity(i);

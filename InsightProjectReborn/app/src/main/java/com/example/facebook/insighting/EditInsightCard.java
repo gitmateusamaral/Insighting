@@ -129,7 +129,7 @@ public class EditInsightCard extends AppCompatActivity {
     }
 
     public void onBackPressed() {
-        Intent i = new Intent(this, InsightCardActivity.class);
+        Intent i = new Intent(this, IC.class);
         i.putExtra("project",ic_p+"");
         Toast.makeText(this, "Cancelled Insight Card", Toast.LENGTH_LONG).show();
         startActivity(i);
@@ -142,7 +142,7 @@ public class EditInsightCard extends AppCompatActivity {
     public void handlerUpdate(String title, String description){
         if ((!title.isEmpty() || !description.isEmpty())) {
             if (isNew) {
-                Intent i = new Intent(this, InsightCardActivity.class);
+                Intent i = new Intent(this, IC.class);
                 i.putExtra("project", ic_p);
                 String cat_s = TextUtils.join(" ",categories);
                 db.insertDataInsightCard(title, description, actualImg, cat_s, ic_p);
@@ -158,7 +158,7 @@ public class EditInsightCard extends AppCompatActivity {
             }
         } else {
             if (count == 1) {
-                Intent i = new Intent(this, InsightCardActivity.class);
+                Intent i = new Intent(this, IC.class);
                 i.putExtra("project",ic_p);
                 startActivity(i);
             }else {
