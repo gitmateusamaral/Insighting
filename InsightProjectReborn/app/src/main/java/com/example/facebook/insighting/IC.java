@@ -1,6 +1,9 @@
 package com.example.facebook.insighting;
 
 import android.*;
+import android.app.DialogFragment;
+import android.app.Fragment;
+import android.app.FragmentTransaction;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -35,7 +38,7 @@ import java.util.Arrays;
 
 public class IC extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
-
+    private int mStackLevel = 0;
     public Project p;
     String id_project;
     public String formattedDate;
@@ -153,6 +156,7 @@ public class IC extends AppCompatActivity
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main2, menu);
+        menu.add("Rada");
         return true;
     }
 
@@ -179,15 +183,10 @@ public class IC extends AppCompatActivity
 
         if (id == R.id.nav_camera) {
             // Handle the camera action
+            showDialog();
         } else if (id == R.id.nav_gallery) {
 
-        } else if (id == R.id.nav_slideshow) {
-
-        } else if (id == R.id.nav_manage) {
-
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
+        }  else if (id == R.id.nav_share) {
 
         }
 
@@ -195,6 +194,25 @@ public class IC extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
+    void showDialog() {
+        mStackLevel++;
+
+        // DialogFragment.show() will take care of adding the fragment
+        // in a transaction.  We also want to remove any currently showing
+        // dialog, so make our own transaction and take care of that here.
+        FragmentTransaction ft = getFragmentManager().beginTransaction();
+        Fragment prev = getFragmentManager().findFragmentByTag("dialog");
+        if (prev != null) {
+            ft.remove(prev);
+        }
+        ft.addToBackStack(null);
+
+        // Create and show the dialog.
+        DialogFragment newFragment = Dialog_Tag.newInstance(0);
+        newFragment.show(ft, "dialog");
+    }
+
 
     public void editCreateInsightCard(View v)
     {
