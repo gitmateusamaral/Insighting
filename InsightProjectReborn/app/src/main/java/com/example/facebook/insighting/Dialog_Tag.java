@@ -1,69 +1,93 @@
 package com.example.facebook.insighting;
 
 import android.app.DialogFragment;
+import android.database.Cursor;
 import android.os.Bundle;
+import android.text.Layout;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.TextView;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Created by teste12 on 11/11/2016.
  */
 
 public  class Dialog_Tag extends DialogFragment {
-    int mNum;
-
+    String id_project;
+    ArrayList<String> selTags;
+    private EditNameDialogListener listener;
     /**
      * Create a new instance of MyDialogFragment, providing "num"
      * as an argument.
      */
-    static DialogFragment newInstance(int num) {
+    static DialogFragment newInstance(String project) {
         Dialog_Tag f = new Dialog_Tag();
-
         // Supply num input as an argument.
         Bundle args = new Bundle();
-        args.putInt("num", num);
+        args.putString("project", project);
         f.setArguments(args);
 
         return f;
     }
 
+    public interface EditNameDialogListener {
+        void onFinishEditDialog(ArrayList<String> inputText);
+    }
+
+    public void closeDialog(View v){
+        listener.onFinishEditDialog(selTags);
+        this.dismiss();
+    }
+
+    public void onCheckBoxClick(View v){
+        CheckBox c = (CheckBox)v;
+        if(c.isChecked()){
+            if(!selTags.contains(c.getText().toString()))
+                selTags.add(c.getText().toString());
+        }else{
+            selTags.remove(c.getText().toString());
+        }
+    }
+
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mNum = getArguments().getInt("num");
-
-        // Pick a style based on the num.
-        int style = DialogFragment.STYLE_NORMAL, theme = 0;
-        switch ((mNum-1)%6) {
-            case 1: style = DialogFragment.STYLE_NO_TITLE; break;
-            case 2: style = DialogFragment.STYLE_NO_FRAME; break;
-            case 3: style = DialogFragment.STYLE_NO_INPUT; break;
-            case 4: style = DialogFragment.STYLE_NORMAL; break;
-            case 5: style = DialogFragment.STYLE_NORMAL; break;
-            case 6: style = DialogFragment.STYLE_NO_TITLE; break;
-            case 7: style = DialogFragment.STYLE_NO_FRAME; break;
-            case 8: style = DialogFragment.STYLE_NORMAL; break;
-        }
-        switch ((mNum-1)%6) {
-            case 4: theme = android.R.style.Theme_Holo; break;
-            case 5: theme = android.R.style.Theme_Holo_Light_Dialog; break;
-            case 6: theme = android.R.style.Theme_Holo_Light; break;
-            case 7: theme = android.R.style.Theme_Holo_Light_Panel; break;
-            case 8: theme = android.R.style.Theme_Holo_Light; break;
-        }
-        setStyle(style, theme);
+        selTags = new ArrayList<String>();
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.dialog_tag, container, false);
-        View tv = v.findViewById(R.id.text);
-
-
+        ViewGroup v = (ViewGroup) inflater.inflate(R.layout.dialog_tag, container, false);
+        id_project = getArguments().getString("project");
+        Log.e("XABLAU",id_project);
+        DatabaseController dbc = new DatabaseController(this.getActivity());
+        Cursor ic = dbc.getInsightCardsFromProjects(id_project);
+        ic.moveToFirst();
+        ArrayList<String> t = new ArrayList<String>();
+        while(!ic.isAfterLast()){
+            String[] allt = ic.getString(3).split(" ");
+            for (String i: allt) {
+                Log.v("TADA",i);
+                if(!t.contains(i) && !i.isEmpty()) {
+                    t.add(i);
+                    CheckBox ck = new CheckBox(this.getActivity());
+                    ck.setText(i);
+                    v.addView(ck);
+                }
+            }
+            ic.moveToNext();
+        }
 
         return v;
     }

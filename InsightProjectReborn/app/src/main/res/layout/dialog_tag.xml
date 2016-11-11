@@ -4,9 +4,10 @@
     android:layout_height="match_parent">
 
     <CheckBox
-        android:text="CheckBox"
+        android:text="All"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/checkBox" />
+        android:id="@+id/checkBox"
+        android:onClick="onCheckBoxClick"/>
 
 </LinearLayout>

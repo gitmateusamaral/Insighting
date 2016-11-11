@@ -37,7 +37,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class IC extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+        implements NavigationView.OnNavigationItemSelectedListener,Dialog_Tag.EditNameDialogListener {
     private int mStackLevel = 0;
     public Project p;
     String id_project;
@@ -134,7 +134,10 @@ public class IC extends AppCompatActivity
             c.moveToNext();
         }
     }
-
+    @Override
+    public void onFinishEditDialog(ArrayList<String> inputText){
+        
+    }
 
     public void open(View v){
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -209,7 +212,7 @@ public class IC extends AppCompatActivity
         ft.addToBackStack(null);
 
         // Create and show the dialog.
-        DialogFragment newFragment = Dialog_Tag.newInstance(0);
+        DialogFragment newFragment = Dialog_Tag.newInstance(id_project);
         newFragment.show(ft, "dialog");
     }
 
