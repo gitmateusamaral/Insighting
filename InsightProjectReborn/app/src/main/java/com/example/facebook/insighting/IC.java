@@ -130,18 +130,17 @@ public class IC extends AppCompatActivity
                 if(!c.getString(3).isEmpty())
                     addTagToView(cv.findViewById(R.id.card_description),c.getString(3));
             }
-
             c.moveToNext();
         }
     }
     @Override
     public void onFinishEditDialog(ArrayList<String> inputText){
-        
+        //Código mágico e separa os insightcards na interface pelas tags
     }
 
     public void open(View v){
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        drawer.openDrawer(Gravity.START);
+        drawer.openDrawer(GravityCompat.START);
     }
 
 
