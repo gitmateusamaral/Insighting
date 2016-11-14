@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context=".EditInsightCard"
+    android:background="#141414"
+    android:scrollbarAlwaysDrawVerticalTrack="true">
+
+    <ImageView
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:id="@+id/imageView2"
+        android:src="@drawable/menu"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="10dp"
+        />
+
+    <ImageView
+        android:layout_width="200dp"
+        android:layout_height="60dp"
+        android:id="@+id/name"
+        android:src="@drawable/name"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:id="@+id/imageView3"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="0dp"
+        android:layout_alignParentRight="true"
+        android:onClick="exitInsightCard"
+        android:background="@drawable/tick"
+        />
+
+    <Button
+        android:layout_width="fill_parent"
+        android:layout_height="30dp"
+        android:text="PROJECTS"
+        android:id="@+id/button"
+        android:background="#10a092"
+        android:layout_marginTop="40dp"
+        android:textColor="#fff"
+        android:layout_below="@+id/imageView2"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="fill_parent"
+        android:layout_below="@id/button">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#fff"
+        android:orientation="vertical"
+        android:scrollbars="vertical">
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:textColor="#000000"
+        android:maxLength="12"
+        android:id="@+id/ic_textTitle"
+        android:text=""
+        android:hint="Title"
+        android:textColorHint="#C0C0C0"
+        android:textSize="40dp"
+        android:layout_marginLeft="10dp"
+        android:layout_below="@+id/button"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="10dp"
+        />
+
+    <EditText
+        android:saveEnabled="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="#000"
+        android:inputType="textMultiLine"
+        android:ems="10"
+        android:textSize="25dp"
+        android:id="@+id/ic_textDescription"
+        android:maxLength="300"
+        android:hint="Description..."
+        android:layout_marginLeft="10dp"
+        android:textColorHint="#C0C0C0"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/ic_textTitle" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/tag_area"
+            android:layout_below="@id/ic_textDescription"
+            android:layout_marginTop="10dp">
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/tag_text"
+                android:singleLine="true"
+                android:hint="Tag here..."
+                android:text=""
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:maxLength="15" />
+            <ImageView
+                android:id="@+id/confirmButton"
+                android:layout_width="30dp"
+                android:onClick="createTag"
+                android:layout_height="25dp"
+                android:layout_marginTop="20dp"
+                android:src="@android:drawable/ic_menu_send"
+                android:layout_toRightOf="@id/tag_text"
+                />
+            <ScrollView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:scrollbars="horizontal"
+                android:layout_below="@id/confirmButton">
+            <GridLayout
+                android:clipChildren="true"
+                android:id="@+id/tag_disposal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:columnCount="3"
+                android:rowCount="3"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginRight="10dp" />
+            </ScrollView>
+        </RelativeLayout>
+        <ImageView
+            android:layout_width="fill_parent"
+            android:layout_height="250dp"
+            android:id="@+id/card_img"
+            android:onClick="addImage"
+            android:src="@drawable/galeria"
+            android:scaleType="centerInside"
+            android:background="#000"/>
+        </LinearLayout>
+    </ScrollView>
+</RelativeLayout>

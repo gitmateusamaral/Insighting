@@ -1,0 +1,47 @@
+<RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="175dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/cv"
+            android:background="#fff"
+            android:onClick="editInsightCard"
+            android:layout_marginLeft="2dp"
+            android:layout_marginStart="2dp">
+
+            <ImageView
+                android:layout_width="fill_parent"
+                android:layout_height="150dp"
+                android:id="@+id/card_photo"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginRight="-16dp"
+                android:layout_marginLeft="-16dp"
+                android:layout_marginTop="-16dp"
+                android:visibility="visible"
+                android:src="@drawable/galeria"
+                android:scaleType="centerInside"
+                android:background="#000" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/card_name"
+                android:textSize="16dp"
+                android:text="Project"
+                android:textStyle="bold"
+                android:textColor="#fff"
+                android:layout_alignParentTop="true"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="100dp" />
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="30dp"
+                android:id="@+id/card_description"
+                android:text=""
+                android:maxLength="18"
+                android:textColor="#000"
+                android:layout_below="@id/card_photo"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp" />
+        </RelativeLayout>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal" android:layout_width="wrap_content"
+    android:layout_height="25dp"
+    android:background="@drawable/roundborder"
+    android:layout_marginRight="20dp"
+    android:layout_marginBottom="15dp">
+
+
+    <ImageView
+        android:layout_width="15dp"
+        android:layout_height="15dp"
+        android:layout_gravity="center_vertical"
+        android:src="@drawable/ximage"
+        android:onClick="deleteTag"
+        android:layout_marginLeft="5dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="25dp"
+        android:paddingRight="5dp"
+        android:textColor="#10A092"
+        android:gravity="center_vertical"
+        android:text="123465789102365"
+        android:layout_marginLeft="5dp"
+        android:id="@+id/tag_name"
+        android:maxLength="15">
+    </TextView>
+
+</LinearLayout>

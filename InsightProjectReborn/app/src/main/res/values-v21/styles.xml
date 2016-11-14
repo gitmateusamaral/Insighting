@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="insight" parent="Theme.AppCompat.NoActionBar">
+        <item name="android:navigationBarColor">#10a092</item>
+        <item name="android:statusBarColor">#0e7970</item>
+    </style>
+</resources>
