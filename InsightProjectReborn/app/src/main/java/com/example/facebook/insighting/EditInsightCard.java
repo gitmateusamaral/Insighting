@@ -122,18 +122,15 @@ public class EditInsightCard extends AppCompatActivity {
                 Uri path = (data.getData());
                 ImageView imageView = (ImageView) findViewById(R.id.card_img);
                 imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
-            String[] filePathColumn = { MediaStore.Images.Media.DATA };
+            imageView.setImageURI(path);
+            actualImg = data.getDataString();
+           /* String[] filePathColumn = { MediaStore.Images.Media.DATA };
             Cursor cursor = getContentResolver().query(path,filePathColumn, null, null, null);
             cursor.moveToFirst();
             int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
-            String picturePath = cursor.getString(columnIndex);
-                Log.d("TESTE#", data.getDataString());
-                Bitmap b = BitmapFactory.decodeFile(picturePath);
-                if(b.getWidth() > getMaxTextureSize()) {
-                    Toast.makeText(this, "Image is too big", Toast.LENGTH_SHORT).show();
-                    imageView.setImageBitmap(b);
-                    actualImg = data.getDataString();
-                }
+            String picturePath = cursor.getString(columnIndex);*/
+                //Bitmap b = BitmapFactory.decodeFile(picturePath);
+                    //Toast.makeText(this, "Image is too big", Toast.LENGTH_SHORT).show();
         }
     }
 
