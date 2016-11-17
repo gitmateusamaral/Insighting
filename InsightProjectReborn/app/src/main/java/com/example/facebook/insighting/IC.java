@@ -119,6 +119,7 @@ public class IC extends AppCompatActivity
         ViewGroup gridlayout = (ViewGroup) findViewById(R.id.grid);
         Cursor c = db.getInsightCardsFromProjects(id_project);
         c.moveToFirst();
+        Log.v("ALL",tags.contains("All")+": "+ tags);
         if(!tags.contains("All") ) {
             while (!c.isAfterLast()) {
                 String[] c_tags = c.getString(c.getColumnIndex("tags")).split(" ");
@@ -142,7 +143,8 @@ public class IC extends AppCompatActivity
                 c.moveToNext();
             }
         }
-        else if (tags.contains("All")){
+        else if (tags.contains("All") || tags.size() == 0){
+
             while (!c.isAfterLast()) {
                 inflater.inflate(R.layout.cardview, gridlayout);
                 View cv = gridlayout.getChildAt(gridlayout.getChildCount() - 1);

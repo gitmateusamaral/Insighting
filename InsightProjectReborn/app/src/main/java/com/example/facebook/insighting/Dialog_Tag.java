@@ -75,6 +75,13 @@ public  class Dialog_Tag extends DialogFragment {
         Cursor ic = dbc.getInsightCardsFromProjects(id_project);
         ic.moveToFirst();
         ArrayList<String> t = new ArrayList<String>();
+        (v.findViewById(R.id.checkBoxAll)).setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                // TODO Auto-generated method stub
+                onCheckBoxClick(v);
+            }
+        });
+        ViewGroup g = (ViewGroup) v.findViewById(R.id.checkBoxList);
         while(!ic.isAfterLast()){
             String[] allt = ic.getString(3).split(" ");
             for (String i: allt) {
@@ -90,7 +97,7 @@ public  class Dialog_Tag extends DialogFragment {
                             onCheckBoxClick(v);
                         }
                     });
-                    v.addView(ck);
+                    g.addView(ck);
 
                 }
             }
@@ -106,8 +113,6 @@ public  class Dialog_Tag extends DialogFragment {
                 exitDialog();
             }
         });
-
-
         return v;
     }
 }

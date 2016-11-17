@@ -27,17 +27,6 @@
         android:layout_centerHorizontal="true" />
 
     <Button
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:id="@+id/imageView3"
-        android:layout_marginRight="20dp"
-        android:layout_marginTop="0dp"
-        android:layout_alignParentRight="true"
-        android:onClick="exitInsightCard"
-        android:background="@drawable/tick"
-        />
-
-    <Button
         android:layout_width="fill_parent"
         android:layout_height="30dp"
         android:text="PROJECTS"
@@ -61,7 +50,6 @@
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-
         android:textColor="#000000"
         android:maxLength="12"
         android:id="@+id/ic_textTitle"
@@ -145,4 +133,17 @@
             android:background="#000"/>
         </LinearLayout>
     </ScrollView>
+
+    <Button
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:id="@+id/imageView3"
+        android:layout_marginRight="15dp"
+        android:onClick="exitInsightCard"
+        android:background="@drawable/cartao_botao_salvar"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="15dp"
+        android:layout_marginTop="10dp"/>
 </RelativeLayout>
