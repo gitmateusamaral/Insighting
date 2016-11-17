@@ -92,7 +92,7 @@ public class InsightCardActivity extends AppCompatActivity {
         }
     }
 
-    public void addTagToView(View v,String text){
+    /*public void addTagToView(View v,String text){
         Log.d("TAGTEXT", text);
 
         LayoutInflater inflater = (LayoutInflater) this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -102,7 +102,7 @@ public class InsightCardActivity extends AppCompatActivity {
         for (String tt:catList) {
             ll.setText(ll.getText().toString()+tt+" ");
         }
-    }
+    }*/
 
     public void addInsightCard(){
         LayoutInflater inflater = (LayoutInflater) this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -124,8 +124,6 @@ public class InsightCardActivity extends AppCompatActivity {
                 img.setImageURI(r);
                 img.setColorFilter(Color.argb(50,0,0,0));
                 Log.d("TAGTEXT", c.getString(3));
-                if(!c.getString(3).isEmpty())
-                addTagToView(cv.findViewById(R.id.card_description),c.getString(3));
             }
 
             c.moveToNext();
@@ -141,6 +139,7 @@ public class InsightCardActivity extends AppCompatActivity {
         startActivity(i);
     }
 
+    @Override
     public void onBackPressed()
     {
         Intent i = new Intent(this,ProjectActivity.class);

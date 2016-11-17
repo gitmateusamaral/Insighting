@@ -33,6 +33,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -43,10 +44,13 @@ public class IC extends AppCompatActivity
     String id_project;
     public String formattedDate;
     DatabaseController db;
+    ArrayList<String> selTags;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
+        selTags = new ArrayList<String>();
+        selTags.add("All");
 
         Bundle extras = getIntent().getExtras();
         db = new DatabaseController(getBaseContext());
@@ -75,27 +79,30 @@ public class IC extends AppCompatActivity
                 requestPermissions(new String[]{android.Manifest.permission.READ_EXTERNAL_STORAGE}, 1);
             }
             else {
-                addInsightCard();
+                addInsightCard(selTags);
             }
             ed.putBoolean("firstTime",false);
             ed.apply();
         }else{
-            addInsightCard();
+            addInsightCard(selTags);
         }
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+
     }
 
     @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         if(grantResults[0]== PackageManager.PERMISSION_GRANTED && requestCode == 2){
-            addInsightCard();
+
+            addInsightCard(selTags);
         }
     }
 
-    public void addTagToView(View v,String text){
+    /*public void addTagToView(View v,String text){
         Log.d("TAGTEXT", text);
 
         LayoutInflater inflater = (LayoutInflater) this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -105,37 +112,57 @@ public class IC extends AppCompatActivity
         for (String tt:catList) {
             ll.setText(ll.getText().toString()+tt+" ");
         }
-    }
-
-    public void addInsightCard(){
+    }*/
+    //ArrayList<String> tags
+    public void addInsightCard(ArrayList<String> tags ){
         LayoutInflater inflater = (LayoutInflater) this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         ViewGroup gridlayout = (ViewGroup) findViewById(R.id.grid);
         Cursor c = db.getInsightCardsFromProjects(id_project);
         c.moveToFirst();
+        if(!tags.contains("All") ) {
+            while (!c.isAfterLast()) {
+                String[] c_tags = c.getString(c.getColumnIndex("tags")).split(" ");
+                for (String i : c_tags) {
+                    if (tags.contains(i)) {
+                        inflater.inflate(R.layout.cardview, gridlayout);
+                        View cv = gridlayout.getChildAt(gridlayout.getChildCount() - 1);
+                        cv.setId(Integer.parseInt(c.getString(c.getColumnIndex("id_card"))));
+                        ((TextView) cv.findViewById(R.id.card_name)).setText(c.getString(0));
 
-        while (!c.isAfterLast()) {
-            inflater.inflate(R.layout.cardview, gridlayout);
-            View cv = gridlayout.getChildAt(gridlayout.getChildCount() - 1);
-            cv.setId(Integer.parseInt(c.getString(c.getColumnIndex("id_card"))));
-            ((TextView)cv.findViewById(R.id.card_name)).setText(c.getString(0));
-            //TextView rada = (TextView)cv.findViewById(R.id.card_description);
-
-            if (!c.getString(c.getColumnIndex("url")).isEmpty() && !c.getString(c.getColumnIndex("url")).equals("#url")) {
-                Uri r = Uri.parse(c.getString(c.getColumnIndex("url")));
-                ImageView img = (ImageView) cv.findViewById(R.id.card_photo);
-                img.setScaleType(ImageView.ScaleType.CENTER_CROP);
-                img.setImageURI(r);
-                img.setColorFilter(Color.argb(50,0,0,0));
-                Log.d("TAGTEXT", c.getString(3));
-                if(!c.getString(3).isEmpty())
-                    addTagToView(cv.findViewById(R.id.card_description),c.getString(3));
+                        if (!c.getString(c.getColumnIndex("url")).isEmpty() && !c.getString(c.getColumnIndex("url")).equals("#url")) {
+                            Uri r = Uri.parse(c.getString(c.getColumnIndex("url")));
+                            ImageView img = (ImageView) cv.findViewById(R.id.card_photo);
+                            img.setScaleType(ImageView.ScaleType.CENTER_CROP);
+                            img.setImageURI(r);
+                            img.setColorFilter(Color.argb(50, 0, 0, 0));
+                        }
+                        break;
+                    }
+                }
+                c.moveToNext();
             }
-            c.moveToNext();
+        }
+        else if (tags.contains("All")){
+            while (!c.isAfterLast()) {
+                inflater.inflate(R.layout.cardview, gridlayout);
+                View cv = gridlayout.getChildAt(gridlayout.getChildCount() - 1);
+                cv.setId(Integer.parseInt(c.getString(c.getColumnIndex("id_card"))));
+                ((TextView) cv.findViewById(R.id.card_name)).setText(c.getString(0));
+                //TextView rada = (TextView)cv.findViewById(R.id.card_description);
+
+                if (!c.getString(c.getColumnIndex("url")).isEmpty() && !c.getString(c.getColumnIndex("url")).equals("#url")) {
+                    Uri r = Uri.parse(c.getString(c.getColumnIndex("url")));
+                    ImageView img = (ImageView) cv.findViewById(R.id.card_photo);
+                    img.setScaleType(ImageView.ScaleType.CENTER_CROP);
+                    img.setImageURI(r);
+                    img.setColorFilter(Color.argb(50, 0, 0, 0));
+                }
+                c.moveToNext();
+            }
         }
     }
     @Override
     public void onFinishEditDialog(ArrayList<String> inputText){
-        //Código mágico e separa os insightcards na interface pelas tags
     }
 
     public void open(View v){
@@ -150,7 +177,8 @@ public class IC extends AppCompatActivity
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
-            super.onBackPressed();
+            Intent i = new Intent(this,ProjectActivity.class);
+            startActivity(i);
         }
     }
 
@@ -213,7 +241,19 @@ public class IC extends AppCompatActivity
         // Create and show the dialog.
         DialogFragment newFragment = Dialog_Tag.newInstance(id_project);
         newFragment.show(ft, "dialog");
+
+        ((Dialog_Tag)newFragment).listener = new Dialog_Tag.EditNameDialogListener() {
+            @Override
+            public void onFinishEditDialog(ArrayList<String> inputText) {
+                selTags = inputText;
+                ViewGroup gridlayout = (ViewGroup) findViewById(R.id.grid);
+                gridlayout.removeAllViews();
+                addInsightCard(selTags);
+            }
+        };
     }
+
+
 
 
     public void editCreateInsightCard(View v)

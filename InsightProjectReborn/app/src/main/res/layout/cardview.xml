@@ -34,14 +34,5 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="100dp" />
 
-            <TextView
-                android:layout_width="fill_parent"
-                android:layout_height="30dp"
-                android:id="@+id/card_description"
-                android:text=""
-                android:maxLength="18"
-                android:textColor="#000"
-                android:layout_below="@id/card_photo"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="10dp" />
+
         </RelativeLayout>
